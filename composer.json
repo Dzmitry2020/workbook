@@ -1,0 +1,14 @@
+{
+    "require": {
+        "texlab/mydb": "^0.0.4",
+        "twbs/bootstrap": "^4.5"
+    },
+
+    "scripts": {
+        "post-update-cmd": [
+            "rmdir /q /s public\\bootstrap",
+            "mkdir public\\bootstrap",
+            "xcopy /i /e vendor\\twbs\\bootstrap\\dist public\\bootstrap"
+        ]
+    }
+}
