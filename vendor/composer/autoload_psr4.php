@@ -6,5 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'View\\' => array($baseDir . '/src/View'),
     'TexLab\\MyDB\\' => array($vendorDir . '/texlab/mydb/src'),
+    'Model\\' => array($baseDir . '/src/Model'),
+    'Core\\' => array($baseDir . '/src/Core'),
+    'Controller\\' => array($baseDir . '/src/Controller'),
 );

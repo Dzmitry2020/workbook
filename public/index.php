@@ -1,10 +1,10 @@
 <?php
 
-//session_start();
-//
-//require '../vendor/autoload.php';
-//
-//(new Core\Dispatcher())->run();
+session_start();
+
+require '../vendor/autoload.php';
+
+(new Core\Dispatcher())->run();
 
 //use TexLab\MyDB\DbEntity;
 //use TexLab\MyDB\DB;

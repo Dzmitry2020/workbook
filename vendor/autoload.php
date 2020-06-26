@@ -5,9 +5,3 @@
 require_once __DIR__ . '/composer/autoload_real.php';
 
 return ComposerAutoloaderInit88b998a612e9c910ade2a13b31cbb22f::getLoader();
-
-//spl_autoload_register(function ($class_name) { // вызывает каждый раз когда вызывают ее
-//    // include $class_name . '.php';
-//
-//    include str_replace('\\', '/', "$class_name.php");
-//});
