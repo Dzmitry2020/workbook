@@ -24,5 +24,4 @@ trait ServiceTrait
             array_column($data, 'Comment')
         );
     }
-
 }

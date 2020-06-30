@@ -10,6 +10,7 @@ class View
     private $template;
     private $path;
     private $data;
+    private $folder;
 
     public function __construct()
     {
@@ -19,6 +20,11 @@ class View
     public function setLayout(string $layout)
     {
         $this->layout = $layout;
+        return $this;
+    }
+
+    public function setFolder(string $folder) {
+        $this->folder = $folder .'/';
         return $this;
     }
 
@@ -44,7 +50,7 @@ class View
         if (is_array($this->data)) {
             extract($this->data);
         }
-//        Html::create('input');
-        include "$this->path$this->template.php";
+        Html::create('input');
+        include "$this->path$this->folder$this->template.php";
     }
 }

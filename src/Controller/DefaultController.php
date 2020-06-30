@@ -8,7 +8,7 @@ class DefaultController extends AbstractController
     {
         $this
             ->view
-            ->setTemplate('default')
-            ->view();
+            ->setFolder('default')
+            ->setTemplate('default');
     }
 }

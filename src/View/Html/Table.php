@@ -6,6 +6,7 @@ class Table extends AbstractTag
 {
     protected $table;
     protected $data;
+    protected $headers;
 
 
     public function __construct()
@@ -17,6 +18,16 @@ class Table extends AbstractTag
     {
         $this->style = '';
         $this->data = '';
+        return $this;
+    }
+
+    public function setHeaders(array $headers) {
+        $str = '';
+
+        foreach ($headers as $value) {
+            $str .= "\t<th>$value</th>\n";
+        }
+        $this->headers = $str;
         return $this;
     }
 
@@ -35,8 +46,9 @@ class Table extends AbstractTag
         $this->data = $str;
         return $this;
     }
+
     public function html()
     {
-        return "<table class='table table-striped table-dark'  $this->style$this->class>\n$this->data</table>\n";
+        return "<table class='table table-striped table-dark'  $this->style$this->class>\n<tr>\n$this->headers</tr>\n$this->data</table>\n";
     }
 }

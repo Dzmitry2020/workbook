@@ -6,12 +6,13 @@ use mysqli;
 
 class DbTable extends AbstractTable implements CRUDInterface
 {
-    use QueryBuilder,
-        ServiceTrait;
+    use QueryBuilderTrait,
+        ServiceTrait,
+        PaginationTrait;
 
     protected $mysqli;
     protected $tableName;
-    protected $current;
+    protected $currentQuery = [];
     protected const SELECT_DEFAULT = [
         "SELECT" => "*",
         "FROM" => null,
@@ -25,14 +26,15 @@ class DbTable extends AbstractTable implements CRUDInterface
     public function __construct(mysqli $mysqli, $tableName)
     {
         $this->mysqli = $mysqli;
-        $this->current["FROM"] = $this->tableName = $tableName;
+        $this->tableName = $tableName;
+        $this->setFrom($this->tableName);
 
     }
 
     public function getSql()
     {
         $sql = "";
-        foreach (array_merge(self::SELECT_DEFAULT, $this->current) as $key => $value) {
+        foreach (array_merge(self::SELECT_DEFAULT, $this->currentQuery) as $key => $value) {
             if (!empty ($value)) {
                 $sql .= "$key $value\n";
             }

@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Core\Config;
 use Model\CRUDInterface;
 use View\View;
 use Model\DbTable;
@@ -20,27 +21,34 @@ abstract class AbstractTableController extends AbstractController
             $this->tableName
         );
 
-        $this->view = $view;
-        $this->view->setTemplate('show');
+        parent::__construct($view);
+        $this->view->setFolder('table');
     }
 
-    public function actionShow()
+    public function actionShow(array $data)
     {
+//        $currentPage = $data['get']['page'] ?? 1;
+//        print_r($data);
         // print_r($this->table->getComments());
         // $fields = $this->table->getFields();
         // unset($fields['id']);
         // echo $this->getClassName();
-        $fields = array_diff($this->table->getFields(), ['id']);
+//        $fields = array_diff($this->table->getFields(), ['id']);
 
         $this
             ->view
+            ->setTemplate('show')
             ->setData([
-                'table' => $this->table->get(),
-                'fields' => $fields,
+                'table' => $this
+                    ->table
+                    ->setPageSize(Config::PAGE_SIZE)
+                    ->getPage($data['get']['page'] ?? 1),
+                'fields' => array_diff($this->table->getFields(), ['id']),
                 'comments' => $this->table->getComments(),
-                'type' => $this->getClassName()
-            ])
-            ->view();
+                'type' => $this->getClassName(),
+                'pageCount' => $this->table->getPageCount()
+            ]);
+
 //        echo $this->table
 //            ->setSelect("id")
 //            ->addSelect("adress")
@@ -56,6 +64,9 @@ abstract class AbstractTableController extends AbstractController
 //            ->addOrderBy("name")
 //            ->setLimit("5, 9")
 //            ->getSql();
+//        $tmp = $this->table->setPageSize(2)->getPage(2);
+//        print_r($tmp);
+//        print_r($this->table->getPageCount());
     }
 
     public function actionAdd(array $data)
@@ -92,8 +103,8 @@ abstract class AbstractTableController extends AbstractController
                 'id' => $id,
                 'type' => $this->getClassName(),
                 'comments' => $this->table->getComments()
-            ])
-            ->view();
+            ]);
+
 
         // print_r($viewData);
     }

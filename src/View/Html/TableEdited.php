@@ -11,6 +11,12 @@ class TableEdited extends Table
         $this->type = $type;
         return $this;
     }
+    public function setHeaders(array $headers) {
+        parent::setHeaders($headers);
+        $this->headers .= "\t<th></th>\n\t<th></th>\n";
+        return $this;
+    }
+
     public function data(array $data)
     {
         $str = "";
