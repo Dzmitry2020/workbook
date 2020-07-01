@@ -4,6 +4,7 @@ namespace Controller;
 
 use Core\Config;
 use Model\CRUDInterface;
+use TexLab\MyDB\DbEntity;
 use View\View;
 use Model\DbTable;
 use mysqli;
@@ -14,11 +15,22 @@ abstract class AbstractTableController extends AbstractController
     protected $view; // View
     protected $tableName;
 
-    public function __construct(View $view, mysqli $mysqli)
+//    public function __construct(View $view, mysqli $mysqli)
+//    {
+//        $this->table = new DbTable(
+//            $mysqli,
+//            $this->tableName
+//        );
+//
+//        parent::__construct($view);
+//        $this->view->setFolder('table');
+//    }
+
+    public function __construct(View $view, mysqli $link)
     {
-        $this->table = new DbTable(
-            $mysqli,
-            $this->tableName
+        $this->table = new DbEntity(
+            $this->tableName,
+            $link
         );
 
         parent::__construct($view);
@@ -43,10 +55,10 @@ abstract class AbstractTableController extends AbstractController
                     ->table
                     ->setPageSize(Config::PAGE_SIZE)
                     ->getPage($data['get']['page'] ?? 1),
-                'fields' => array_diff($this->table->getFields(), ['id']),
-                'comments' => $this->table->getComments(),
+                'fields' => array_diff($this->table->getColumnsNames(), ['id']),
+                'comments' => $this->table->getColumnsComments(),
                 'type' => $this->getClassName(),
-                'pageCount' => $this->table->getPageCount()
+                'pageCount' => $this->table->PageCount()
             ]);
 
 //        echo $this->table
@@ -102,7 +114,7 @@ abstract class AbstractTableController extends AbstractController
                 'fields' => $viewData,
                 'id' => $id,
                 'type' => $this->getClassName(),
-                'comments' => $this->table->getComments()
+                'comments' => $this->table->getColumnsComments()
             ]);
 
 

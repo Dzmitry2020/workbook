@@ -6,25 +6,34 @@ use Core\Config;
 use Controller\TableController;
 use Model\DbTable;
 use mysqli;
+use TexLab\MyDB\DB;
 use View\View;
 
 
 class Dispatcher
 {
-    protected $mysqli;
+//    protected $mysqli;
     protected $view;
     protected $controllerName;
     protected $actionName;
+    protected $link;
 
     public function __construct()
     {
 
-        $this->mysqli = new mysqli(
-            Config::MYSQL_HOST,
-            Config::MYSQL_USER_NAME,
-            Config::MYSQL_PASSWORD,
-            Config::MYSQL_DATABASE
-        );
+//        $this->mysqli = new mysqli(
+//            Config::MYSQL_HOST,
+//            Config::MYSQL_USER_NAME,
+//            Config::MYSQL_PASSWORD,
+//            Config::MYSQL_DATABASE
+//        );
+
+        $this->link = DB::Link([
+            'host' => Config::MYSQL_HOST,
+            'username' => Config::MYSQL_USER_NAME,
+            'password' => Config::MYSQL_PASSWORD,
+            'dbname' => Config::MYSQL_DATABASE
+        ]);
 
         $this->view = new View();
         $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'] ?? 'Default'))) . "Controller";
@@ -38,7 +47,8 @@ class Dispatcher
         if (class_exists($this->controllerName)) {
             $controller = new $this->controllerName(
                 $this->view,
-                $this->mysqli
+//                $this->mysqli
+                $this->link
             );
             $controllerData = ['post' => $_POST, 'get' => $_GET];
 
