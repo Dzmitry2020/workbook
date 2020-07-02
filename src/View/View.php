@@ -23,8 +23,9 @@ class View
         return $this;
     }
 
-    public function setFolder(string $folder) {
-        $this->folder = $folder .'/';
+    public function setFolder(string $folder)
+    {
+        $this->folder = $folder . '/';
         return $this;
     }
 
@@ -40,8 +41,15 @@ class View
         return $this;
     }
 
+    public function addData(array $data)
+    {
+        $this->data = array_merge($this->data ?? [], $data);
+        return $this;
+    }
+
     public function view()
     {
+        $controllerType = $this->data['controllerType'];
         include "$this->path$this->layout.php";
     }
 

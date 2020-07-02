@@ -1,6 +1,7 @@
 {
   "require": {
-    "texlab/mydb": "^0.0.4"
+    "texlab/mydb": "^0.0.4",
+    "ext-mysqli": "*"
   },
   "autoload": {
     "psr-4": {

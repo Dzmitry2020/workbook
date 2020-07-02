@@ -2,8 +2,36 @@
 
 namespace Controller;
 
-class PeopleController extends AbstractTableController {
+use mysqli;
+use View\View;
 
-    protected  $tableName = "people";
+class PeopleController extends AbstractTableController
+{
 
+    protected $tableName = "people";
+
+    public function __construct(View $view, mysqli $link)
+    {
+        parent::__construct($view, $link);
+        $this->view->setFolder('people');
+
+    }
+
+    private function prepareData(array &$data)
+    {
+        $data['post']['Driver'] = isset($data['post']['Driver']) ? 1 : 0;
+    }
+
+    public function actionAdd(array $data)
+    {
+        $this->prepareData($data);
+        parent::actionAdd($data);
+    }
+
+    public function actionEdit(array $data)
+    {
+        $this->prepareData($data);
+        parent::actionEdit($data);
+
+    }
 }

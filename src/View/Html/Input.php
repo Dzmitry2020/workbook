@@ -7,6 +7,7 @@ class Input extends AbstractTag
     protected $value = '';
     protected $type = " type='text'";
     protected $name;
+    protected $checked = '';
 
     public function setType(string $type)
     {
@@ -31,6 +32,15 @@ class Input extends AbstractTag
         return $this;
     }
 
+    public function setChecked(string $value)
+    {
+        if ($value) {
+            $this->checked = " checked='checked'";
+        }
+        return $this;
+    }
+
+
     public function setName(string $name)
     {
         $this->name = " name='$name'";
@@ -39,6 +49,6 @@ class Input extends AbstractTag
 
     public function html()
     {
-        return "<input$this->type$this->value$this->name$this->style$this->class$this->id>\n";
+        return "<input$this->type$this->value$this->name$this->style$this->class$this->id$this->checked>\n";
     }
 }
