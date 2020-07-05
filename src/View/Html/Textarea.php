@@ -5,20 +5,20 @@ namespace View\Html;
 
 class Textarea extends AbstractTag
 {
-    protected $row = " row='50'";
-    protected $coll = " coll='50'";
+    protected $rows = " rows='30'";
+    protected $cols = " cols='30'";
     protected $name;
     protected $innerText;
 
-    public function setRow(int $row)
+    public function setRows(int $row)
     {
-        $this->row = " row='$row'";
+        $this->rows = " rows='$row'";
         return $this;
     }
 
-    public function setColl(int $coll)
+    public function setCols(int $col)
     {
-        $this->coll = " coll='$coll'";
+        $this->cols = " cols='$col'";
         return $this;
     }
 
@@ -36,6 +36,6 @@ class Textarea extends AbstractTag
 
     public function html()
     {
-        return "<textarea $this->name$this->class$this->style$this->coll$this->row>$this->innerText</textarea>";
+        return "<textarea $this->name$this->class$this->style$this->id$this->cols$this->rows>$this->innerText</textarea>";
     }
 }

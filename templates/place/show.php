@@ -31,18 +31,24 @@ $form = Html::create('Form')
     ->setAction("?action=add&type=$type")
     ->setClass('form');
 
-foreach ($fields as $field) {
 
+foreach ($fields as $field) {
     $form->addContent(Html::create('Label')
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
-
-    $form->addContent(Html::create('input')
-        ->setName($field)
-        ->setType($field=='Driver'?'checkbox':'text')
-        ->setId($field)
-        ->html());
+    if ($field == 'FullName'){
+        $form->addContent(Html::create('Textarea')
+            ->setName($field)
+            ->setId($field)
+            ->html());
+    }
+    else {
+        $form->addContent(Html::create('input')
+            ->setName($field)
+            ->setId($field)
+            ->html());
+    }
 }
 
 $form->addContent(

@@ -25,7 +25,7 @@ class Pagination extends AbstractTag
     {
         $str = "<div$this->class$this->style$this->id>\n";
         for ($i = 1; $i <= $this->pageCount; $i++) {
-            $str .= "\t<a href='?action=show&type=$this->type&page=$i'>$i</a>\n";
+            $str .= "\t<a href='?action=show&type=$this->type&page=$i'>$i </a>\n";
         }
         $str .= "</div>\n";
 

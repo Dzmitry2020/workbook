@@ -17,6 +17,7 @@ echo Html::create("Pagination")
     ->setPageCount($pageCount)
     ->html();
 
+/** @var array $table */
 echo Html::create('TableEdited')
     ->setControllerType($type)
     ->setHeaders($comments)
@@ -32,16 +33,22 @@ $form = Html::create('Form')
 
 
 foreach ($fields as $field) {
-    $form->addContent(Html::create('Label')->setFor($field)->setInnerText($comments[$field])->html());
 
-//  $form->addContent(Html::create('checkbox')->setName($field)->setId($field)->html());
-    $form->addContent(Html::create('input')->setName($field)->setId($field)->html());
+    $form->addContent(Html::create('Label')
+        ->setFor($field)
+        ->setInnerText($comments[$field])
+        ->html());
+
+    $form->addContent(Html::create('input')
+        ->setName($field)
+        ->setId($field)
+        ->html());
 }
 
 $form->addContent(
     Html::create('Input')
         ->setType('submit')
-        ->setValue('Add')
+        ->setValue('Добавить')
         ->html()
 );
 

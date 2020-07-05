@@ -29,13 +29,17 @@
             <li class="nav-item<?= $controllerType == 'people' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=people">Персонал</a>
             </li>
+            <li class="nav-item<?= $controllerType == 'place' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=show&type=place">Локации</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
 <?php
 $this->body();
 ?>
-<script src="js/jquery-3.5.1.slim.min.js"></script>
+<script src="js/jquery-3.5.1.slim.min.js">
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
