@@ -16,10 +16,21 @@
     resize: none; /* Запрещаем изменять размер */
 }
 
-.form input[type='text'] {
+.form select {
+    background-color: lightgray;
+    margin: 20px;
+}
+
+.form input[type='text'], input[type='date'] {
     background-color: lightgray;
     display: block;
     margin: 20px;
+}
+
+.form input[type='checkbox']  {
+    background-color: lightgray;
+    display: inline;
+    margin: 10px;
 }
 
 .form input[type='submit'] {
@@ -31,4 +42,10 @@
 .form {
     margin: 20px;
     padding: 25px;
+}
+
+.pagination {
+    text-decoration: #6610f2;
+    font-weight: bold;
+    margin: 5px;
 }

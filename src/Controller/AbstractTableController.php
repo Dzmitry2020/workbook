@@ -12,6 +12,7 @@ abstract class AbstractTableController extends AbstractController
     protected $table; // CRUDInterface
     protected $view; // View
     protected $tableName;
+    protected $templateFolder;
 
     public function __construct(View $view, mysqli $link)
     {
@@ -21,7 +22,7 @@ abstract class AbstractTableController extends AbstractController
         );
 
         parent::__construct($view);
-        $this->view->setFolder('table');
+        $this->view->setFolder($this->templateFolder);
     }
 
     public function actionShow(array $data)
@@ -36,7 +37,7 @@ abstract class AbstractTableController extends AbstractController
                     ->getPage($data['get']['page'] ?? 1),
                 'fields' => array_diff($this->table->getColumnsNames(), ['id']),
                 'comments' => $this->table->getColumnsComments(),
-                'columnsTypes' => $this->table->getColumnsTypes(),
+//                'columnsTypes' => $this->table->getColumnsTypes(),
                 'type' => $this->getClassName(),
                 'pageCount' => $this->table->PageCount()
             ]);

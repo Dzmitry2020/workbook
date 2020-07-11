@@ -19,7 +19,8 @@ class Input extends AbstractTag
             'password',
             'file',
             'checkbox',
-            'hidden'
+            'hidden',
+            'date'
         ])) {
             $this->type = " type='$type'";
         }
@@ -49,6 +50,15 @@ class Input extends AbstractTag
 
     public function html()
     {
-        return "<input$this->type$this->value$this->name$this->style$this->class$this->id$this->checked>\n";
+        if ($this->type == " type='checkbox'") {
+            return "<input$this->type$this->value$this->name$this->style$this->class$this->id$this->checked><br>";
+        } else {
+            if ($this->type == " type='date'") {
+                return "<input$this->type$this->value$this->name$this->style$this->class$this->id$this->checked>";
+            } else {
+                return "<input$this->type$this->value$this->name$this->style$this->class$this->id$this->checked>";
+            }
+        }
+
     }
 }

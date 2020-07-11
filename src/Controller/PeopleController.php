@@ -9,13 +9,14 @@ class PeopleController extends AbstractTableController
 {
 
     protected $tableName = "people";
+    protected $templateFolder = "people";
 
-    public function __construct(View $view, mysqli $link)
-    {
-        parent::__construct($view, $link);
-        $this->view->setFolder('people');
-
-    }
+//    public function __construct(View $view, mysqli $link)
+//    {
+//        parent::__construct($view, $link);
+//        $this->view->setFolder('people');
+//
+//    }
 
     private function prepareData(array &$data)
     {
