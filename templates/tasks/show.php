@@ -49,6 +49,7 @@ foreach ($fields as $field) {
                 ->setId($field)
                 ->setValue(date('Y-m-d'))
                 ->html());
+            //kjlkjflkjdl
         } else {
             if ($field == 'fkPlace') {
                 /** @var array $placeNamesList */
