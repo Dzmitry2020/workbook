@@ -37,9 +37,9 @@ abstract class AbstractTableController extends AbstractController
                     ->getPage($data['get']['page'] ?? 1),
                 'fields' => array_diff($this->table->getColumnsNames(), ['id']),
                 'comments' => $this->table->getColumnsComments(),
-//                'columnsTypes' => $this->table->getColumnsTypes(),
                 'type' => $this->getClassName(),
-                'pageCount' => $this->table->PageCount()
+                'pageCount' => $this->table->PageCount(),
+                'curPage' => ($data['get']['page'] ?? 1)
             ]);
     }
 
@@ -51,6 +51,8 @@ abstract class AbstractTableController extends AbstractController
 
     public function actionDel(array $data)
     {
+
+
         if (isset($data['get']['id'])) {
             $id = $data['get']['id'];
             $this->table->del(['id' => $id]);;

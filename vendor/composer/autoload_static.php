@@ -14,6 +14,7 @@ class ComposerStaticInit88b998a612e9c910ade2a13b31cbb22f
         'T' => 
         array (
             'TexLab\\MyDB\\' => 12,
+            'TexLab\\Html\\' => 12,
         ),
         'M' => 
         array (
@@ -34,6 +35,10 @@ class ComposerStaticInit88b998a612e9c910ade2a13b31cbb22f
         'TexLab\\MyDB\\' => 
         array (
             0 => __DIR__ . '/..' . '/texlab/mydb/src',
+        ),
+        'TexLab\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/texlab/html/src',
         ),
         'Model\\' => 
         array (

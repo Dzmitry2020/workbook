@@ -1,6 +1,6 @@
 <?php
 
-use View\Html\Html;
+use View\Html;
 
 /** @var int $pageCount Количество страниц
  * @var array $fields Список полей таблицы
@@ -8,13 +8,11 @@ use View\Html\Html;
  * @var string $type Имя контроллера
  */
 
-/** @var array $columnsTypes */
-//print_r($columnsTypes);
-
 echo Html::create("Pagination")
     ->setClass('pagination')
     ->setControllerType($type)
     ->setPageCount($pageCount)
+    ->setCurPage($this->data['curPage'])
     ->html();
 
 echo Html::create('TableEdited')
@@ -33,7 +31,6 @@ $form = Html::create('Form')
 
 foreach ($fields as $field) {
     $form->addContent(Html::create('Label')->setFor($field)->setInnerText($comments[$field])->html());
-//  $form->addContent(Html::create('checkbox')->setName($field)->setId($field)->html());
     $form->addContent(Html::create('input')->setName($field)->setId($field)->html());
 }
 

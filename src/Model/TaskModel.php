@@ -17,12 +17,24 @@ class TaskModel extends DbEntity
         return $res;
     }
 
+    public function getStatus()
+    {
+        $res = [];
+        foreach ($this->runSQL('SELECT id, name FROM taskstate') as $row) {
+            $res[$row['id']] = $row['name'];
+        }
+        return $res;
+    }
+
     public function getTask($pageSize, $page)
     {
-        return $this->setSelect('tasks.id, place.name, tasks.date,  tasks.status,tasks.content, tasks.comment')
+        return $this
+            ->setSelect('tasks.id, tasks.status, tasks.date, place.name,  tasks.content, tasks.comment')
             ->setFrom('tasks, place')
-            ->setWhere('place.id = tasks.fkPlace')
+            ->setWhere('place.id = tasks.place_id')
+            ->setOrderBy('tasks.date')
             ->setPageSize($pageSize)
             ->getPage($page);
     }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-use View\Html\Html;
+use View\Html;
 
 /** @var int $id
  * @var string $type

@@ -2,8 +2,6 @@
 
 namespace View;
 
-use View\Html\Html;
-
 class View
 {
     private $layout;
@@ -58,7 +56,12 @@ class View
         if (is_array($this->data)) {
             extract($this->data);
         }
-        Html::create('input');
         include "$this->path$this->folder$this->template.php";
     }
+
+//    private function html(string $className)
+//    {
+//        $className = "TexLab\\Html\\$className";
+//        return new $className();
+//    }
 }

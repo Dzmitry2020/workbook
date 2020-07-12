@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 05 2020 г., 22:23
+-- Время создания: Июл 13 2020 г., 00:08
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.5
 
@@ -39,11 +39,11 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`id`, `GosNum`, `model`, `type`) VALUES
-(1, 'АЕ 3670-2', 'ГАЗ-2705', 'грузопассажирский'),
 (2, 'АЕ 5698-2', 'ГАЗ-2705', 'грузопассажирский'),
 (3, '9847ЕВ-2', 'УАЗ-3163', 'легковой специальный'),
 (4, '2961EX-2', 'Lada Largus R-90', 'легковой специальный'),
-(5, '3486IB-2', 'Шкода Октавия', 'легковой специальный');
+(5, '3486IB-2', 'Шкода Октавия', 'легковой специальный'),
+(14, 'АЕ 3670-2', 'ГАЗ-2705', 'грузопассажирский');
 
 -- --------------------------------------------------------
 
@@ -121,12 +121,45 @@ INSERT INTO `place` (`id`, `name`, `FullName`) VALUES
 
 CREATE TABLE `tasks` (
   `id` int NOT NULL,
-  `fkPlace` int NOT NULL,
-  `date` date NOT NULL,
-  `status` tinyint UNSIGNED NOT NULL,
-  `content` text NOT NULL,
-  `comment` text
+  `status` tinyint UNSIGNED NOT NULL COMMENT 'Статус',
+  `date` date NOT NULL COMMENT 'Дата',
+  `place_id` int NOT NULL COMMENT 'Локация',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Задание',
+  `comment` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT 'Примечание'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `status`, `date`, `place_id`, `content`, `comment`) VALUES
+(1, 4, '2020-07-08', 2, 'ППР на оборудовании', ''),
+(3, 3, '2020-07-13', 12, 'Ремонт РПУ', ''),
+(9, 2, '2020-07-11', 1, 'Ремонт ДУМ', 'Замена блока UniPing'),
+(10, 1, '2020-07-14', 10, 'Хоз.работы: обкашивание территории и анкеров оттяжек', ''),
+(13, 1, '2020-07-13', 8, 'Работы на АМС', 'Покраска мачты'),
+(14, 1, '2020-07-14', 5, 'ППР на оборудовании', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `taskstate`
+--
+
+CREATE TABLE `taskstate` (
+  `id` tinyint UNSIGNED NOT NULL COMMENT 'id',
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `taskstate`
+--
+
+INSERT INTO `taskstate` (`id`, `name`) VALUES
+(1, 'запланировано'),
+(2, 'выполняется'),
+(3, 'приостановлено'),
+(4, 'завершено');
 
 -- --------------------------------------------------------
 
@@ -191,6 +224,12 @@ ALTER TABLE `tasks`
   ADD UNIQUE KEY `idTask_UNIQUE` (`id`);
 
 --
+-- Индексы таблицы `taskstate`
+--
+ALTER TABLE `taskstate`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `trip`
 --
 ALTER TABLE `trip`
@@ -212,13 +251,13 @@ ALTER TABLE `worker`
 -- AUTO_INCREMENT для таблицы `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `people`
 --
 ALTER TABLE `people`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `place`
@@ -230,7 +269,13 @@ ALTER TABLE `place`
 -- AUTO_INCREMENT для таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `taskstate`
+--
+ALTER TABLE `taskstate`
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `trip`

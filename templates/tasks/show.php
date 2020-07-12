@@ -1,18 +1,21 @@
 <?php
 
-use Core\Config;
-use View\Html\Html;
+//use TexLab\Html\Input;
+use View\Html;
 
 /** @var int $pageCount Количество страниц
  * @var array $fields Список полей таблицы
  * @var array $comments Комментарии к полям таблицы
  * @var string $type Имя контроллера
+ * @var array $placeNamesList
+ * @var array $taskStatusList
  */
 
 echo Html::create("Pagination")
     ->setClass('pagination')
     ->setControllerType($type)
     ->setPageCount($pageCount)
+    ->setCurPage($this->data['curPage'])
     ->html();
 
 /** @var array $table */
@@ -29,7 +32,6 @@ $form = Html::create('Form')
     ->setAction("?action=add&type=$type")
     ->setClass('form');
 
-
 foreach ($fields as $field) {
     $form->addContent(Html::create('Label')
         ->setFor($field)
@@ -41,38 +43,25 @@ foreach ($fields as $field) {
             ->setName($field)
             ->setId($field)
             ->html());
-    } else {
-        if ($field == 'date') {
-            $form->addContent(Html::create('input')
-                ->setType('date')
-                ->setName($field)
-                ->setId($field)
-                ->setValue(date('Y-m-d'))
-                ->html());
-            //kjlkjflkjdl
-        } else {
-            if ($field == 'fkPlace') {
-                /** @var array $placeNamesList */
-                $form->addContent(Html::create('Select')
-                    ->setName($field)
-                    ->setId($field)
-                    ->data($placeNamesList)
-                    ->html());
-            } else {
-                if ($field == 'status') {
-                    $form->addContent(Html::create('Select')
-                        ->setName($field)
-                        ->setId($field)
-                        ->data(Config::TASK_STATUS)
-                        ->html());
-                } else {
-                    $form->addContent(Html::create('input')
-                        ->setName($field)
-                        ->setId($field)
-                        ->html());
-                }
-            }
-        }
+    } elseif ($field == 'date') {
+        $form->addContent(Html::create('Input')
+            ->setType('date')
+            ->setName($field)
+            ->setId($field)
+            ->setValue(date('Y-m-d'))
+            ->html());
+    } elseif ($field == 'place_id') {
+        $form->addContent(Html::create('Select')
+            ->setName($field)
+            ->setId($field)
+            ->data($placeNamesList)
+            ->html());
+    } elseif ($field == 'status') {
+        $form->addContent(Html::create('Select')
+            ->setName($field)
+            ->setId($field)
+            ->data($taskStatusList)
+            ->html());
     }
 }
 
@@ -84,3 +73,4 @@ $form->addContent(
 );
 
 echo $form->html();
+//echo (new Input())->html();

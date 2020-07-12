@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'View\\' => array($baseDir . '/src/View'),
     'TexLab\\MyDB\\' => array($vendorDir . '/texlab/mydb/src'),
+    'TexLab\\Html\\' => array($vendorDir . '/texlab/html/src'),
     'Model\\' => array($baseDir . '/src/Model'),
     'Core\\' => array($baseDir . '/src/Core'),
     'Controller\\' => array($baseDir . '/src/Controller'),

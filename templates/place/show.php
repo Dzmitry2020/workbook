@@ -1,6 +1,6 @@
 <?php
 
-use View\Html\Html;
+use View\Html;
 
 /** @var int $pageCount Количество страниц
  * @var array $fields Список полей таблицы
@@ -15,6 +15,7 @@ echo Html::create("Pagination")
     ->setClass('pagination')
     ->setControllerType($type)
     ->setPageCount($pageCount)
+    ->setCurPage($this->data['curPage'])
     ->html();
 
 /** @var array $table */
@@ -33,10 +34,12 @@ $form = Html::create('Form')
 
 
 foreach ($fields as $field) {
+
     $form->addContent(Html::create('Label')
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
+
     if ($field == 'FullName'){
         $form->addContent(Html::create('Textarea')
             ->setName($field)

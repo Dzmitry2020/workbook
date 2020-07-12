@@ -1,6 +1,11 @@
 <?php
 
-use View\Html\Html;
+use View\Html;
+use TexLab\Html\Form;
+use TexLab\Html\Input;
+use TexLab\Html\Label;
+use TexLab\Html\Pagination;
+use View\Html\TableEdited;
 
 /** @var int $pageCount Количество страниц
  * @var array $fields Список полей таблицы
@@ -8,45 +13,45 @@ use View\Html\Html;
  * @var string $type Имя контроллера
  */
 
-/** @var array $columnsTypes */
-//print_r($columnsTypes);
+//echo (new Pagination())
 
+//echo $this->data['curPage'];
 echo Html::create("Pagination")
     ->setClass('pagination')
     ->setControllerType($type)
     ->setPageCount($pageCount)
+    ->setCurPage($this->data['curPage'])
     ->html();
 
+
 /** @var array $table */
-echo Html::create('TableEdited')
+echo (new TableEdited())
     ->setControllerType($type)
     ->setHeaders($comments)
     ->data($table)
     ->setClass('table')
     ->html();
 
-
-$form = Html::create('Form')
+$form = (new Form())
     ->setMethod('POST')
     ->setAction("?action=add&type=$type")
     ->setClass('form');
 
-
 foreach ($fields as $field) {
 
-    $form->addContent(Html::create('Label')
+    $form->addInnerText((new Label())
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
 
-    $form->addContent(Html::create('input')
+    $form->addInnerText((new Input())
         ->setName($field)
         ->setId($field)
         ->html());
 }
 
-$form->addContent(
-    Html::create('Input')
+$form->addInnerText(
+    (new Input())
         ->setType('submit')
         ->setValue('Добавить')
         ->html()

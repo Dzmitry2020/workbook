@@ -1,23 +1,18 @@
 <?php
 
 
-namespace View\Html;
+namespace TexLab\Html;
 
 
 class Label extends AbstractTag
 {
+    use InnerTextTrait;
+
     protected $for;
-    protected $innerText;
 
     public function setFor(string $for)
     {
         $this->for = " for='$for'";
-        return $this;
-    }
-
-    public function setInnerText(string $text)
-    {
-        $this->innerText = $text;
         return $this;
     }
 
