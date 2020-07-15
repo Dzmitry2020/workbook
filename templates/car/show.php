@@ -14,7 +14,6 @@ use View\Html\TableEdited;
  */
 
 //echo (new Pagination())
-
 //echo $this->data['curPage'];
 echo Html::create("Pagination")
     ->setClass('pagination')
@@ -22,7 +21,6 @@ echo Html::create("Pagination")
     ->setPageCount($pageCount)
     ->setCurPage($this->data['curPage'])
     ->html();
-
 
 /** @var array $table */
 echo (new TableEdited())

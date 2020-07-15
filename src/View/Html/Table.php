@@ -8,7 +8,6 @@ class Table extends AbstractTag
     protected $data;
     protected $headers;
 
-
     public function __construct()
     {
         $this->clear();
