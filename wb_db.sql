@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 13 2020 г., 00:08
+-- Время создания: Июл 18 2020 г., 13:38
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.5
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `car` (
   `id` int NOT NULL,
-  `GosNum` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Гос.номер',
   `model` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Модель',
+  `GosNum` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Гос.номер',
   `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Тип'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -38,12 +38,33 @@ CREATE TABLE `car` (
 -- Дамп данных таблицы `car`
 --
 
-INSERT INTO `car` (`id`, `GosNum`, `model`, `type`) VALUES
-(2, 'АЕ 5698-2', 'ГАЗ-2705', 'грузопассажирский'),
-(3, '9847ЕВ-2', 'УАЗ-3163', 'легковой специальный'),
-(4, '2961EX-2', 'Lada Largus R-90', 'легковой специальный'),
-(5, '3486IB-2', 'Шкода Октавия', 'легковой специальный'),
-(14, 'АЕ 3670-2', 'ГАЗ-2705', 'грузопассажирский');
+INSERT INTO `car` (`id`, `model`, `GosNum`, `type`) VALUES
+(1, 'ГАЗ-2705', 'АЕ 3670-2', 'грузопассажирский'),
+(2, 'ГАЗ-2705', 'АЕ 5698-2', 'грузопассажирский'),
+(3, 'Lada Largus R-90', '2961EX-2', 'легковой специальный'),
+(4, 'УАЗ-3163', '9847ЕВ-2', 'легковой специальный'),
+(5, 'Шкода Октавия', '3486IB-2', 'легковой специальный');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL COMMENT 'Группа',
+  `access_level` tinyint UNSIGNED NOT NULL COMMENT 'Уровень доступа'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `access_level`) VALUES
+(1, 'Пользователи', 0),
+(2, 'Операторы', 1),
+(3, 'Администраторы', 5);
 
 -- --------------------------------------------------------
 
@@ -134,11 +155,11 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `status`, `date`, `place_id`, `content`, `comment`) VALUES
 (1, 4, '2020-07-08', 2, 'ППР на оборудовании', ''),
-(3, 3, '2020-07-13', 12, 'Ремонт РПУ', ''),
-(9, 2, '2020-07-11', 1, 'Ремонт ДУМ', 'Замена блока UniPing'),
-(10, 1, '2020-07-14', 10, 'Хоз.работы: обкашивание территории и анкеров оттяжек', ''),
-(13, 1, '2020-07-13', 8, 'Работы на АМС', 'Покраска мачты'),
-(14, 1, '2020-07-14', 5, 'ППР на оборудовании', '');
+(2, 3, '2020-07-13', 12, 'Ремонт РПУ', ''),
+(3, 2, '2020-07-11', 1, 'Ремонт ДУМ', 'Замена блока UniPing'),
+(4, 1, '2020-07-14', 10, 'Хоз.работы: обкашивание территории и анкеров оттяжек', ''),
+(5, 1, '2020-07-13', 8, 'Работы на АМС', 'Покраска мачты'),
+(6, 1, '2020-07-14', 5, 'ППР на оборудовании', '');
 
 -- --------------------------------------------------------
 
@@ -159,7 +180,7 @@ INSERT INTO `taskstate` (`id`, `name`) VALUES
 (1, 'запланировано'),
 (2, 'выполняется'),
 (3, 'приостановлено'),
-(4, 'завершено');
+(4, 'выполнено');
 
 -- --------------------------------------------------------
 
@@ -169,13 +190,34 @@ INSERT INTO `taskstate` (`id`, `name`) VALUES
 
 CREATE TABLE `trip` (
   `id` int NOT NULL,
-  `fkDriver` int NOT NULL COMMENT 'водитель',
-  `fkTask` int NOT NULL COMMENT 'задача',
-  `fkCar` int NOT NULL COMMENT 'Автомашина',
+  `driver_id` int NOT NULL COMMENT 'водитель',
+  `task_id` int NOT NULL COMMENT 'задача',
+  `car_id` int NOT NULL COMMENT 'Автомашина',
   `PutNum` int NOT NULL COMMENT 'Путевой лист',
   `timeStart` datetime NOT NULL COMMENT 'Время выезда',
   `timeFinish` datetime NOT NULL COMMENT 'Время возвращения'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `group_id` int NOT NULL COMMENT 'Группа',
+  `login` varchar(50) NOT NULL COMMENT 'Логин',
+  `email` varchar(255) DEFAULT NULL COMMENT 'e-mail',
+  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Пароль'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `group_id`, `login`, `email`, `password`) VALUES
+(1, 5, 'admin', 'dme@tut.by', '123');
 
 -- --------------------------------------------------------
 
@@ -185,8 +227,8 @@ CREATE TABLE `trip` (
 
 CREATE TABLE `worker` (
   `id` int NOT NULL,
-  `fkPeople` int NOT NULL,
-  `fkTask` int NOT NULL
+  `people_id` int NOT NULL,
+  `task_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -200,6 +242,13 @@ ALTER TABLE `car`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `idCar_UNIQUE` (`id`),
   ADD UNIQUE KEY `GNum_UNIQUE` (`GosNum`);
+
+--
+-- Индексы таблицы `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `group_name` (`name`);
 
 --
 -- Индексы таблицы `people`
@@ -237,6 +286,13 @@ ALTER TABLE `trip`
   ADD UNIQUE KEY `idTrip_UNIQUE` (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`);
+
+--
 -- Индексы таблицы `worker`
 --
 ALTER TABLE `worker`
@@ -251,7 +307,13 @@ ALTER TABLE `worker`
 -- AUTO_INCREMENT для таблицы `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT для таблицы `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `people`
@@ -282,6 +344,12 @@ ALTER TABLE `taskstate`
 --
 ALTER TABLE `trip`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `worker`
