@@ -32,7 +32,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="?action=show&type=users">Пользователи</a>
-                    <a class="dropdown-item" href="/">Группы</a>
+                    <a class="dropdown-item" href="?action=show&type=groups">Группы</a>
 <!--                    <div class="dropdown-divider"></div>-->
 <!--                    <a class="dropdown-item" href="#">Something else here</a>-->
                 </div>
