@@ -1,21 +1,23 @@
 <?php
 
+
 namespace Controller;
 
+
 use Core\Config;
-use Model\TaskModel;
+use Model\UserModel;
 use mysqli;
 use View\View;
 
-class TasksController extends AbstractTableController
+class UsersController extends AbstractTableController
 {
-    protected $tableName = "tasks";
-    protected $templateFolder = "tasks";
+    protected $tableName = "users";
+    protected $templateFolder = "users";
 
     public function __construct(View $view, mysqli $link)
     {
         parent::__construct($view, $link);
-        $this->table = new TaskModel(
+        $this->table = new UserModel(
             $this->tableName,
             $link
         );
@@ -25,11 +27,10 @@ class TasksController extends AbstractTableController
     {
         parent::actionShow($data);
         $this->view->addData([
-            'placeNamesList' => $this->table->getNames(),
-            'taskStatusList' => $this->table->getStatus(),
+            'placeGroupsList' => $this->table->getGroups(),
             'table' => $this
                 ->table
-                ->getTask(
+                ->getUsers(
                     Config::PAGE_SIZE,
                     $data['get']['page'] ?? 1
                 )
@@ -40,8 +41,9 @@ class TasksController extends AbstractTableController
     {
         parent::actionShowEdit($data);
         $this->view->addData([
-            'placeNamesList' => $this->table->getNames(),
-            'taskStatusList' => $this->table->getStatus()
+            'placeGroupsList' => $this->table->getGroups()
         ]);
     }
+
+
 }

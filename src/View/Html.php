@@ -1,7 +1,6 @@
 <?php
 
 namespace View;
-//use TexLab\Html\Input;
 
 class Html
 {

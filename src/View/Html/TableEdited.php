@@ -2,6 +2,8 @@
 
 namespace View\Html;
 
+use TexLab\Html\Table;
+
 class TableEdited extends Table
 {
     protected $type;

@@ -26,6 +26,17 @@
             <li class="nav-item<?= $controllerType == '' ? ' active' : '' ?>">
                 <a class="nav-link" href="/">Главная</a>
             </li>
+            <li class="nav-item dropdown<?= $controllerType == 'users' ? ' active' : '' ?>">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Доступ
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="?action=show&type=users">Пользователи</a>
+                    <a class="dropdown-item" href="/">Группы</a>
+<!--                    <div class="dropdown-divider"></div>-->
+<!--                    <a class="dropdown-item" href="#">Something else here</a>-->
+                </div>
+            </li>
             <li class="nav-item<?= $controllerType == 'car' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=car">Транспорт</a>
             </li>
