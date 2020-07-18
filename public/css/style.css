@@ -6,8 +6,9 @@
     border-collapse: collapse;
 }
 
-.table td a:hover {
+.table td a:hover, .pagination a:hover {
     text-decoration: none;
+    color: #f21010;
 }
 
 .form select, textarea, input[type='text'], input[type='date'] {
@@ -48,6 +49,11 @@
     margin: 5px;
 }
 
-.curPage {
-    color: #f21010;
+.pagination a {
+    padding: 0 2px;
+}
+
+.pagination a.current {
+    color: #ff66ff;
+    /*background-color: #000000;*/
 }

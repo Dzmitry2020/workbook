@@ -11,11 +11,11 @@ use View\Html;
  * @var array $taskStatusList
  */
 
-echo Html::create("Pagination")
+echo Html::create('Pagination')
     ->setClass('pagination')
-    ->setControllerType($type)
+    ->setUrlPrefix("?action=show&type=".$type)
     ->setPageCount($pageCount)
-    ->setCurPage($this->data['curPage'])
+    ->setCurrentPage($this->data['currentPage'])
     ->html();
 
 /** @var array $table */
@@ -33,39 +33,39 @@ $form = Html::create('Form')
     ->setClass('form');
 
 foreach ($fields as $field) {
-    $form->addContent(Html::create('Label')
+    $form->addInnerText(Html::create('Label')
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
 
     if (($field == 'content') or ($field == 'comment')) {
-        $form->addContent(Html::create('Textarea')
+        $form->addInnerText(Html::create('Textarea')
             ->setName($field)
             ->setId($field)
             ->html());
     } elseif ($field == 'date') {
-        $form->addContent(Html::create('Input')
+        $form->addInnerText(Html::create('Input')
             ->setType('date')
             ->setName($field)
             ->setId($field)
             ->setValue(date('Y-m-d'))
             ->html());
     } elseif ($field == 'place_id') {
-        $form->addContent(Html::create('Select')
+        $form->addInnerText(Html::create('Select')
             ->setName($field)
             ->setId($field)
-            ->data($placeNamesList)
+            ->setData($placeNamesList)
             ->html());
     } elseif ($field == 'status') {
-        $form->addContent(Html::create('Select')
+        $form->addInnerText(Html::create('Select')
             ->setName($field)
             ->setId($field)
-            ->data($taskStatusList)
+            ->setData($taskStatusList)
             ->html());
     }
 }
 
-$form->addContent(
+$form->addInnerText(
     Html::create('Input')
         ->setType('submit')
         ->setValue('Добавить')

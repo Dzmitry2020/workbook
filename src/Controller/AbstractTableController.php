@@ -39,7 +39,7 @@ abstract class AbstractTableController extends AbstractController
                 'comments' => $this->table->getColumnsComments(),
                 'type' => $this->getClassName(),
                 'pageCount' => $this->table->PageCount(),
-                'curPage' => ($data['get']['page'] ?? 1)
+                'currentPage' => ($data['get']['page'] ?? 1)
             ]);
     }
 

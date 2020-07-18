@@ -9,13 +9,12 @@ use View\Html;
  */
 
 /** @var array $columnsTypes */
-//print_r($columnsTypes);
 
-echo Html::create("Pagination")
+echo Html::create('Pagination')
     ->setClass('pagination')
-    ->setControllerType($type)
+    ->setUrlPrefix("?action=show&type=".$type)
     ->setPageCount($pageCount)
-    ->setCurPage($this->data['curPage'])
+    ->setCurrentPage($this->data['currentPage'])
     ->html();
 
 /** @var array $table */
@@ -26,35 +25,33 @@ echo Html::create('TableEdited')
     ->setClass('table')
     ->html();
 
-
 $form = Html::create('Form')
     ->setMethod('POST')
     ->setAction("?action=add&type=$type")
     ->setClass('form');
 
-
 foreach ($fields as $field) {
 
-    $form->addContent(Html::create('Label')
+    $form->addInnerText(Html::create('Label')
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
 
     if ($field == 'FullName'){
-        $form->addContent(Html::create('Textarea')
+        $form->addInnerText(Html::create('Textarea')
             ->setName($field)
             ->setId($field)
             ->html());
     }
     else {
-        $form->addContent(Html::create('input')
+        $form->addInnerText(Html::create('input')
             ->setName($field)
             ->setId($field)
             ->html());
     }
 }
 
-$form->addContent(
+$form->addInnerText(
     Html::create('Input')
         ->setType('submit')
         ->setValue('Добавить')

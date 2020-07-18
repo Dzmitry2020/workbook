@@ -8,11 +8,11 @@ use View\Html;
  * @var string $type Имя контроллера
  */
 
-echo Html::create("Pagination")
+echo Html::create('Pagination')
     ->setClass('pagination')
-    ->setControllerType($type)
+    ->setUrlPrefix("?action=show&type=".$type)
     ->setPageCount($pageCount)
-    ->setCurPage($this->data['curPage'])
+    ->setCurrentPage($this->data['currentPage'])
     ->html();
 
 /** @var array $table */
@@ -29,19 +29,20 @@ $form = Html::create('Form')
     ->setClass('form');
 
 foreach ($fields as $field) {
-    $form->addContent(Html::create('Label')
+
+    $form->addInnerText(Html::create('Label')
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
 
-    $form->addContent(Html::create('input')
+    $form->addInnerText(Html::create('input')
         ->setName($field)
         ->setType($field=='Driver'?'checkbox':'text')
         ->setId($field)
         ->html());
 }
 
-$form->addContent(
+$form->addInnerText(
     Html::create('Input')
         ->setType('submit')
         ->setValue('Добавить')
