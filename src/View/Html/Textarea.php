@@ -1,14 +1,14 @@
 <?php
 
-namespace TexLab\Html;
+namespace View\Html;
 
 
 class Textarea extends AbstractTag
 {
-    use NameTrait, InnerTextTrait;
-
-    protected $rows = " rows='8'";
-    protected $cols = " cols='16'";
+    protected $rows = " rows='30'";
+    protected $cols = " cols='30'";
+    protected $name;
+    protected $innerText;
 
     public function setRows(int $row)
     {
@@ -19,6 +19,18 @@ class Textarea extends AbstractTag
     public function setCols(int $col)
     {
         $this->cols = " cols='$col'";
+        return $this;
+    }
+
+    public function setInnerText(string $innerText)
+    {
+        $this->innerText = $innerText;
+        return $this;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = " name='$name'";
         return $this;
     }
 

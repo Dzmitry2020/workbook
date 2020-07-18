@@ -6,7 +6,6 @@
     border-collapse: collapse;
 }
 
-<<<<<<< Updated upstream
 .form textarea {
     width: 250px;
     height: 150px;
@@ -15,10 +14,6 @@
     display: block;
     margin: 20px;
     resize: none; /* Запрещаем изменять размер */
-=======
-.table td a:hover, .pagination a:hover {
-    text-decoration: none;
->>>>>>> Stashed changes
 }
 
 .form select {
@@ -53,11 +48,4 @@
     text-decoration: #6610f2;
     font-weight: bold;
     margin: 5px;
-<<<<<<< Updated upstream
-=======
-}
-
-a.current {
-    color: #f21010;
->>>>>>> Stashed changes
 }

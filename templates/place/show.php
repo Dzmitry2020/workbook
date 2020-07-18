@@ -13,12 +13,8 @@ use View\Html\Html;
 
 echo Html::create("Pagination")
     ->setClass('pagination')
-    ->setUrlPrefix('?action=show&type='.$type)
+    ->setControllerType($type)
     ->setPageCount($pageCount)
-<<<<<<< Updated upstream
-=======
-    ->setCurrentPage($this->data['currentPage'])
->>>>>>> Stashed changes
     ->html();
 
 /** @var array $table */
@@ -37,30 +33,25 @@ $form = Html::create('Form')
 
 
 foreach ($fields as $field) {
-<<<<<<< Updated upstream
     $form->addContent(Html::create('Label')
-=======
-
-    $form->addInnerText(Html::create('Label')
->>>>>>> Stashed changes
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
     if ($field == 'FullName'){
-        $form->addInnerText(Html::create('Textarea')
+        $form->addContent(Html::create('Textarea')
             ->setName($field)
             ->setId($field)
             ->html());
     }
     else {
-        $form->addInnerText(Html::create('input')
+        $form->addContent(Html::create('input')
             ->setName($field)
             ->setId($field)
             ->html());
     }
 }
 
-$form->addInnerText(
+$form->addContent(
     Html::create('Input')
         ->setType('submit')
         ->setValue('Добавить')

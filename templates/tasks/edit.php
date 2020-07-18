@@ -1,11 +1,8 @@
 <?php
 
-<<<<<<< Updated upstream
 use Core\Config;
 use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
-=======
->>>>>>> Stashed changes
 use View\Html\Html;
 
 /** @var int $id
@@ -20,17 +17,16 @@ $form = Html::create('Form')
     ->setClass('form');
 
 foreach ($fields as $name => $value) {
-    $form->addInnerText(Html::create('Label')
+    $form->addContent(Html::create('Label')
         ->setFor($name)
         ->setInnerText($comments[$name])
         ->html());
     if (($name == 'content') or ($name == 'comment')) {
-        $form->addInnerText(Html::create('Textarea')
+        $form->addContent(Html::create('Textarea')
             ->setName($name)
             ->setId($name)
             ->setInnerText($value)
             ->html());
-<<<<<<< Updated upstream
     } else {
         if ($name == 'date') {
             $form->addContent(Html::create('input')
@@ -77,35 +73,6 @@ foreach ($fields as $name => $value) {
                 }
             }
         }
-=======
-    } elseif ($name == 'date') {
-        $form->addInnerText(Html::create('input')
-            ->setType('date')
-            ->setName($name)
-            ->setId($name)
-            ->setValue($value)
-            ->html());
-    } elseif ($name == 'place_id') {
-        $form->addInnerText(Html::create('Select')
-            ->setName($name)
-            ->setId($name)
-            ->setValue($value)
-            ->data($placeNamesList)
-            ->html());
-    } elseif ($name == 'status') {
-        $form->addInnerText(Html::create('Select')
-            ->setName($name)
-            ->setId($name)
-            ->setValue($value)
-            ->data($taskStatusList)
-            ->html());
-    } else {
-        $form->addInnerText(Html::create('input')
-            ->setName($name)
-            ->setId($name)
-            ->setValue($value)
-            ->html());
->>>>>>> Stashed changes
     }
 }
 

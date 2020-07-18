@@ -14,11 +14,11 @@ $form = Html::create('Form')
     ->setClass('form');
 
 foreach ($fields as $name => $field) {
-    $form->addInnerText(Html::create('Label')
+    $form->addContent(Html::create('Label')
         ->setFor($name)
         ->setInnerText($comments[$name])
         ->html());
-    $form->addInnerText(Html::create('input')
+    $form->addContent(Html::create('input')
         ->setName($name)
         ->setId($name)
         ->setType($name == 'Driver' ? 'checkbox' : 'text')
@@ -28,12 +28,12 @@ foreach ($fields as $name => $field) {
 }
 
 echo $form
-    ->addInnerText(Html::create('Input')
+    ->addContent(Html::create('Input')
     ->setType('hidden')
     ->setName('id')
     ->setValue($id)
     ->html())
-    ->addInnerText(Html::create('Input')
+    ->addContent(Html::create('Input')
         ->setType('submit')
         ->setValue('OK')
         ->html())
