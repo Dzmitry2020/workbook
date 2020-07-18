@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f47bfc1c7bc45e4448848cb42903a907",
+    "content-hash": "4611f08f6366f6381ec74d86963462b6",
     "packages": [
         {
             "name": "texlab/html",
-            "version": "v0.03",
+            "version": "v0.04",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andy-aa/html.git",
-                "reference": "75c2ebaf4f20a9cd352e49f7fb1c82e91146a4a9"
+                "reference": "2419b1df4f6c623c13a4f84ec61e7dbb84d8ca56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andy-aa/html/zipball/75c2ebaf4f20a9cd352e49f7fb1c82e91146a4a9",
-                "reference": "75c2ebaf4f20a9cd352e49f7fb1c82e91146a4a9",
+                "url": "https://api.github.com/repos/andy-aa/html/zipball/2419b1df4f6c623c13a4f84ec61e7dbb84d8ca56",
+                "reference": "2419b1df4f6c623c13a4f84ec61e7dbb84d8ca56",
                 "shasum": ""
             },
             "require-dev": {
@@ -34,7 +34,7 @@
                 "MIT"
             ],
             "description": "Set of classes for view templates",
-            "time": "2020-07-17T14:56:56+00:00"
+            "time": "2020-07-18T18:44:41+00:00"
         },
         {
             "name": "texlab/mydb",

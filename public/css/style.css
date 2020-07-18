@@ -1,10 +1,10 @@
-.table td {
+.table, .table td, .table th {
     border: 2px solid black;
 }
 
-.table {
-    border-collapse: collapse;
-}
+/*.table {*/
+/*    border-collapse: collapse;*/
+/*}*/
 
 .table td a:hover, .pagination a:hover {
     text-decoration: none;

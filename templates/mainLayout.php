@@ -14,7 +14,7 @@
 <body>
 
 <!--<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">-->
-    <!--    <a class="navbar-brand" href="#">Navbar</a>-->
+<!--    <a class="navbar-brand" href="#">Navbar</a>-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,14 +27,15 @@
                 <a class="nav-link" href="/">Главная</a>
             </li>
             <li class="nav-item dropdown<?= $controllerType == 'users' ? ' active' : '' ?>">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Доступ
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="?action=show&type=users">Пользователи</a>
                     <a class="dropdown-item" href="?action=show&type=groups">Группы</a>
-<!--                    <div class="dropdown-divider"></div>-->
-<!--                    <a class="dropdown-item" href="#">Something else here</a>-->
+                    <!--                    <div class="dropdown-divider"></div>-->
+                    <!--                    <a class="dropdown-item" href="#">Something else here</a>-->
                 </div>
             </li>
             <li class="nav-item<?= $controllerType == 'car' ? ' active' : '' ?>">
@@ -61,11 +62,10 @@
     </div>
 </main>
 
-<script src="js/jquery-3.5.1.slim.min.js">
-    <
-    script
-    src = "js/popper.min.js" ></script>
+<script src="js/jquery-3.5.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/my.js"></script>
 </body>
 
 </html>
