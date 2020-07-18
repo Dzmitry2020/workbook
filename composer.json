@@ -1,8 +1,20 @@
 {
+  "minimum-stability": "dev",
   "require": {
     "texlab/mydb": "^0.0.4",
+<<<<<<< Updated upstream
     "ext-mysqli": "*"
+=======
+    "ext-mysqli": "*",
+    "texlab/html": "^0.03"
+>>>>>>> Stashed changes
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "C:/OpenServer/domains/html"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Controller\\": "src/Controller",

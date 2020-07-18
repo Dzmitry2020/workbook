@@ -39,7 +39,12 @@ abstract class AbstractTableController extends AbstractController
                 'comments' => $this->table->getColumnsComments(),
 //                'columnsTypes' => $this->table->getColumnsTypes(),
                 'type' => $this->getClassName(),
+<<<<<<< Updated upstream
                 'pageCount' => $this->table->PageCount()
+=======
+                'pageCount' => $this->table->PageCount(),
+                'currentPage' => ($data['get']['page'] ?? 1)
+>>>>>>> Stashed changes
             ]);
     }
 

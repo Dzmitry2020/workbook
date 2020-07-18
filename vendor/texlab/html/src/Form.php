@@ -1,29 +1,17 @@
 <?php
 
-namespace View\Html;
+namespace TexLab\Html;
 
 class Form extends AbstractTag
 {
+    use InnerTextTrait;
+
     protected $action = "";
     protected $method = "GET";
-    protected $content = "";
 
     public function setAction(string $action)
     {
         $this->action = $action;
-        return $this;
-    }
-
-
-    public function setContent(string $content)
-    {
-        $this->content = $content;
-        return $this;
-    }
-
-    public function addContent(string $content)
-    {
-        $this->content .= $content;
         return $this;
     }
 
@@ -35,9 +23,8 @@ class Form extends AbstractTag
         return $this;
     }
 
-
     public function html()
     {
-        return "<form action='$this->action' method='$this->method'$this->class$this->style>$this->content</form>";
+        return "<form action='$this->action' method='$this->method'$this->class$this->style>\r\n$this->innerText</form>";
     }
 }

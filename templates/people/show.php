@@ -1,5 +1,9 @@
 <?php
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 use View\Html\Html;
 
 /** @var int $pageCount Количество страниц
@@ -13,8 +17,12 @@ use View\Html\Html;
 
 echo Html::create("Pagination")
     ->setClass('pagination')
-    ->setControllerType($type)
+    ->setUrlPrefix('?action=show&type='.$type)
     ->setPageCount($pageCount)
+<<<<<<< Updated upstream
+=======
+    ->setCurrentPage($this->data['currentPage'])
+>>>>>>> Stashed changes
     ->html();
 
 /** @var array $table */
@@ -32,20 +40,24 @@ $form = Html::create('Form')
     ->setClass('form');
 
 foreach ($fields as $field) {
+<<<<<<< Updated upstream
 
     $form->addContent(Html::create('Label')
+=======
+    $form->addInnerText(Html::create('Label')
+>>>>>>> Stashed changes
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
 
-    $form->addContent(Html::create('input')
+    $form->addInnerText(Html::create('input')
         ->setName($field)
         ->setType($field=='Driver'?'checkbox':'text')
         ->setId($field)
         ->html());
 }
 
-$form->addContent(
+$form->addInnerText(
     Html::create('Input')
         ->setType('submit')
         ->setValue('Добавить')
