@@ -10,6 +10,15 @@
 
 use TexLab\Html\Html;
 
+if ($pageCount > 1) {
+    echo Html::Pagination()
+        ->setClass('pagination')
+        ->setUrlPrefix("?action=show&type=" . $type)
+        ->setPageCount($pageCount)
+        ->setCurrentPage($this->data['currentPage'])
+        ->html();
+}
+
 $comments[] = 'Удаление';
 $comments[] = 'Правка';
 
@@ -43,10 +52,10 @@ foreach ($fields as $field) {
         ->setInnerText($comments[$field])
         ->html());
 
-        $form->addInnerText(Html::Input()
-            ->setName($field)
-            ->setId($field)
-            ->html());
+    $form->addInnerText(Html::Input()
+        ->setName($field)
+        ->setId($field)
+        ->html());
 }
 
 $form->addInnerText(

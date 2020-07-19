@@ -10,12 +10,14 @@
 
 use TexLab\Html\Html;
 
-echo Html::Pagination()
-    ->setClass('pagination')
-    ->setUrlPrefix("?action=show&type=" . $type)
-    ->setPageCount($pageCount)
-    ->setCurrentPage($this->data['currentPage'])
-    ->html();
+if ($pageCount > 1){
+    echo Html::Pagination()
+        ->setClass('pagination')
+        ->setUrlPrefix("?action=show&type=" . $type)
+        ->setPageCount($pageCount)
+        ->setCurrentPage($this->data['currentPage'])
+        ->html();
+}
 
 $comments[] = 'Удаление';
 $comments[] = 'Правка';
