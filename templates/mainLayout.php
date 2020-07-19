@@ -13,10 +13,7 @@
 
 <body>
 
-<!--<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">-->
-<!--    <a class="navbar-brand" href="#">Navbar</a>-->
-
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -39,14 +36,16 @@
                     <!--                    <a class="dropdown-item" href="#">Something else here</a>-->
                 </div>
             </li>
-            <li class="nav-item<?= $controllerType == 'car' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=car">Транспорт</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'people' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=people">Персонал</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'place' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=place">Локации</a>
+            <li class="nav-item dropdown<?= ($controllerType == 'car') ? ' active' : (($controllerType == 'people') ? ' active' : (($controllerType == 'place') ? ' active' : '')) ?>">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Справочники
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="?action=show&type=place">Локации</a>
+                    <a class="dropdown-item" href="?action=show&type=car">Транспорт</a>
+                    <a class="dropdown-item" href="?action=show&type=people">Персонал</a>
+                </div>
             </li>
             <li class="nav-item<?= $controllerType == 'tasks' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=tasks">Задачи</a>
@@ -56,7 +55,7 @@
 </nav>
 
 <main role="main" class="container">
-    <div class="jumbotron">
+    <div class="container-fluid" style="margin-top:80px">
         <?php
         $this->body();
         ?>

@@ -3,7 +3,7 @@
 /** @var int $pageCount Количество страниц
  * @var array $fields Список полей таблицы
  * @var string $type Имя контроллера
- * @var array $placeGroupsList Список групп
+ * @var array $groupsList Список групп
  * @var array $table Таблица с данными
  * @var array $comments Заголовки столюцов таблицы
  */
@@ -58,7 +58,7 @@ foreach ($fields as $field) {
         $form->addInnerText(Html::Select()
             ->setName($field)
             ->setId($field)
-            ->setData($placeGroupsList)
+            ->setData($groupsList)
             ->html());
     } else {
         $form->addInnerText(Html::Input()

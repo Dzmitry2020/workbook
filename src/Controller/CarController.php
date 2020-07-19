@@ -2,9 +2,6 @@
 
 namespace Controller;
 
-//use mysqli;
-//use View\View;
-
 class CarController extends AbstractTableController {
 
     protected $tableName = "car";

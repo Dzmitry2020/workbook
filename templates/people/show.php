@@ -24,6 +24,7 @@ $delA = Html::A()->addInnerText('🗑️')->setClass('del');
 $edtA = Html::A()->addInnerText('✏')->setClass('edit');
 
 foreach ($table as &$row) {
+    $row['driver'] = $row['driver'] ? '☑' : '';
     $row[] = $delA
         ->setHref("?action=del&type=$type&id=$row[id]")
         ->html();
@@ -52,7 +53,7 @@ foreach ($fields as $field) {
 
     $form->addInnerText(Html::Input()
         ->setName($field)
-        ->setType($field=='Driver'?'checkbox':'text')
+        ->setType($field=='driver'?'checkbox':'text')
         ->setId($field)
         ->html());
 }

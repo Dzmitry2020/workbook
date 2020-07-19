@@ -1,6 +1,5 @@
 <?php
 
-use View\Html;
 
 /** @var int $id
  * @var string $type
@@ -8,31 +7,33 @@ use View\Html;
  * @var array $comments
  */
 
-$form = Html::create('Form')
+use TexLab\Html\Html;
+
+$form = Html::Form()
     ->setMethod('POST')
     ->setAction("?action=edit&type=$type")
     ->setClass('form');
 
 foreach ($fields as $name => $value) {
 
-    $form->addInnerText(Html::create('Label')
+    $form->addInnerText(Html::Label()
         ->setFor($name)
         ->setInnerText($comments[$name])
         ->html());
 
-    $form->addInnerText(Html::create('input')
+    $form->addInnerText(Html::Input()
         ->setName($name)
         ->setId($name)
         ->setValue($value)
         ->html());
 }
 
-echo $form->addInnerText(Html::create('Input')
+echo $form->addInnerText(Html::Input()
     ->setType('hidden')
     ->setName('id')
     ->setValue($id)
     ->html())
-    ->addInnerText(Html::create('Input')
+    ->addInnerText(Html::Input()
         ->setType('submit')
         ->setValue('OK')
         ->html())

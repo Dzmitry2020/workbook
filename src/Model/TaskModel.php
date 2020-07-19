@@ -29,7 +29,7 @@ class TaskModel extends DbEntity
     public function getTask($pageSize, $page)
     {
         return $this
-            ->setSelect('tasks.id, tasks.status, tasks.date, place.name,  tasks.content, tasks.comment')
+            ->setSelect('tasks.id, tasks.status, tasks.date, place.name, tasks.content, tasks.comment')
             ->setFrom('tasks, place')
             ->setWhere('place.id = tasks.place_id')
             ->setOrderBy('tasks.date')

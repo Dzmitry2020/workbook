@@ -26,6 +26,20 @@ $delA = Html::A()->addInnerText('🗑️')->setClass('del');
 $edtA = Html::A()->addInnerText('✏')->setClass('edit');
 
 foreach ($table as &$row) {
+    switch ($row['status']) {
+        case 1:
+            $row['status'] = '⏹';
+            break;
+        case 2:
+            $row['status'] = '▶';
+            break;
+        case 3:
+            $row['status'] = '⏸️';
+            break;
+        case 4:
+            $row['status'] = '✅';
+            break;
+    }
     $row[] = $delA
         ->setHref("?action=del&type=$type&id=$row[id]")
         ->html();
@@ -33,6 +47,8 @@ foreach ($table as &$row) {
         ->setHref("?action=showedit&type=$type&id=$row[id]")
         ->html();
 }
+
+
 
 echo Html::Table()
     ->setHeaders($comments)

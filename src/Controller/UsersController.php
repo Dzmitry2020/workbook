@@ -27,7 +27,7 @@ class UsersController extends AbstractTableController
     {
         parent::actionShow($data);
         $this->view->addData([
-            'placeGroupsList' => $this->table->getGroups(),
+            'groupsList' => $this->table->getGroups(),
             'table' => $this
                 ->table
                 ->getUsers(
@@ -41,7 +41,7 @@ class UsersController extends AbstractTableController
     {
         parent::actionShowEdit($data);
         $this->view->addData([
-            'placeGroupsList' => $this->table->getGroups()
+            'groupsList' => $this->table->getGroups()
         ]);
     }
 
