@@ -14,8 +14,8 @@ $form = Html::Form()
     ->setClass('form-log');
 
 $form->addInnerText(Html::Label()
-    ->setInnerText("Имя:")
-    ->setFor("name")
+    ->setInnerText("Логин:")
+    ->setFor("login")
     ->html());
 
 $form->addInnerText(Html::Input()
