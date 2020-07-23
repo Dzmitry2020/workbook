@@ -21,10 +21,10 @@ if ($pageCount > 1) {
         ->html();
 }
 
-$comments[] = 'Удаление';
-$comments[] = 'Правка';
+$comments[] = '';
+$comments[] = '';
 
-$delA = Html::A()->addInnerText('🗑️')->setClass('del');
+$delA = Html::A()->addInnerText('⛔')->setClass('del');
 $edtA = Html::A()->addInnerText('✏')->setClass('edit');
 
 foreach ($table as &$row) {

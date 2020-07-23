@@ -50,9 +50,17 @@
             <li class="nav-item<?= $controllerType == 'tasks' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=tasks">Задачи</a>
             </li>
+			<li class="nav-item<?= $controllerType == 'classes' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=loginform&type=login">Logform</a>
+            </li>
+            <li class="nav-item<?= $controllerType == 'classes' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=logout&type=login">Выход</a>
+            </li>
         </ul>
     </div>
 </nav>
+
+<?= empty($_SESSION['user'])?'':$_SESSION['user']['name'].', '.$_SESSION['user']['group']?>
 
 <main role="main" class="container">
     <div class="container-fluid" style="margin-top:80px">

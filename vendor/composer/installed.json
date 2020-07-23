@@ -1,23 +1,25 @@
 [
     {
         "name": "texlab/html",
-        "version": "v0.04",
-        "version_normalized": "0.04.0.0",
+        "version": "v0.05",
+        "version_normalized": "0.05.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/andy-aa/html.git",
-            "reference": "2419b1df4f6c623c13a4f84ec61e7dbb84d8ca56"
+            "reference": "134e53cd2271769284326cc1b811c03ed33d52a6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/andy-aa/html/zipball/2419b1df4f6c623c13a4f84ec61e7dbb84d8ca56",
-            "reference": "2419b1df4f6c623c13a4f84ec61e7dbb84d8ca56",
+            "url": "https://api.github.com/repos/andy-aa/html/zipball/134e53cd2271769284326cc1b811c03ed33d52a6",
+            "reference": "134e53cd2271769284326cc1b811c03ed33d52a6",
             "shasum": ""
         },
         "require-dev": {
-            "phpunit/phpunit": "^9.2"
+            "phpstan/phpstan": "^0.12",
+            "phpunit/phpunit": "^9.2",
+            "vimeo/psalm": "^3.0@dev"
         },
-        "time": "2020-07-18T18:44:41+00:00",
+        "time": "2020-07-23T18:01:55+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
