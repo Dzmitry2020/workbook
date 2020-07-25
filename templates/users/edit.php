@@ -25,6 +25,7 @@ foreach ($fields as $name => $value) {
             ->setType('password')
             ->setName($name)
             ->setId($name)
+            ->setValue($value)
             ->html());
     } elseif ($name == 'group_id') {
 

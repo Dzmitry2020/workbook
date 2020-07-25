@@ -9,4 +9,5 @@ class Config
     const MYSQL_PASSWORD = 'root';
     const MYSQL_DATABASE = 'wb_db';
     const PAGE_SIZE = 5;
+    const SALT = 'lalalala';
 }

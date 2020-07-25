@@ -4,6 +4,7 @@
 namespace Controller;
 
 
+use Core\Config;
 use Model\LoginModel;
 use mysqli;
 use View\View;
@@ -32,18 +33,25 @@ class LoginController extends AbstractController
 
     public function actionLogin($controllerData)
     {
-        $user = $this->table->checkUser($controllerData['post']['login'], $controllerData['post']['pass']);
+        $user = $this
+            ->table
+            ->checkUser(
+                $controllerData['post']['login'],
+                md5(md5($controllerData['post']['pass']) . Config::SALT)
+            );
+
         if (!empty($user)) {
             $_SESSION['user'] = $user;
+
             $this->redirect('?action=default&type=default');
         } else {
             $this->redirect('/');
         }
     }
 
-    public function actionLogout(){
+    public function actionLogout()
+    {
         unset($_SESSION['user']);
-//        $this->redirect('?action=loginform&type=' . $this->getClassName());
         $this->redirect('/');
     }
 
