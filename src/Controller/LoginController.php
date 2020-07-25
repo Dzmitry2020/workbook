@@ -3,7 +3,6 @@
 
 namespace Controller;
 
-
 use Core\Config;
 use Model\LoginModel;
 use mysqli;

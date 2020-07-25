@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Controller;
 
 class GroupsController extends AbstractTableController
 {
-    protected $tableName = "`groups`";
-    protected $templateFolder = "groups";
+    protected string $tableName = "`groups`";
+    protected string $templateFolder = "groups";
 }

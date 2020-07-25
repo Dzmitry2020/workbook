@@ -4,11 +4,11 @@ namespace View;
 
 class View
 {
-    private $layout;
-    private $template;
-    private $path;
-    private $data;
-    private $folder;
+    private string $layout;
+    private string $template;
+    private string $path;
+    private array $data;
+    private string $folder;
 
     public function __construct()
     {
@@ -59,9 +59,4 @@ class View
         include "$this->path$this->folder$this->template.php";
     }
 
-//    private function html(string $className)
-//    {
-//        $className = "TexLab\\Html\\$className";
-//        return new $className();
-//    }
 }

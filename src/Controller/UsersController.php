@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Controller;
-
 
 use Core\Config;
 use Model\UserModel;
@@ -12,9 +10,9 @@ use View\View;
 class UsersController extends AbstractTableController
 {
 
-    protected $tableName = "users";
-    protected $templateFolder = "users";
-    protected $table;
+    protected string $tableName = "users";
+    protected string $templateFolder = "users";
+    protected \TexLab\MyDB\DbEntity $table;
 
     public function __construct(View $view, mysqli $link)
     {

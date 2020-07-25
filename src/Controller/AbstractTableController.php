@@ -9,10 +9,10 @@ use mysqli;
 
 abstract class AbstractTableController extends AbstractController
 {
-    protected $table; // CRUDInterface
-    protected $view; // View
-    protected $tableName;
-    protected $templateFolder;
+    protected DbEntity $table; // CRUDInterface
+    protected View $view; // View
+    protected string $tableName;
+    protected string $templateFolder;
 
     public function __construct(View $view, mysqli $link)
     {
@@ -51,8 +51,6 @@ abstract class AbstractTableController extends AbstractController
 
     public function actionDel(array $data)
     {
-
-
         if (isset($data['get']['id'])) {
             $id = $data['get']['id'];
             $this->table->del(['id' => $id]);;

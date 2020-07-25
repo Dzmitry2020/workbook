@@ -1,5 +1,5 @@
 <?php
-
+/** @var array $page */
 
 namespace Model;
 
@@ -7,7 +7,7 @@ use TexLab\MyDB\DbEntity;
 
 class UserModel extends DbEntity
 {
-    public function getGroups()
+    public function getGroups(): array
     {
         $res = [];
         foreach ($this->runSQL("SELECT `id`, `name` FROM `groups` ORDER BY `name`") as $row) {
@@ -16,8 +16,14 @@ class UserModel extends DbEntity
         return $res;
     }
 
-    public function getUsers($pageSize, $page)
+    /**
+     * @param int $pageSize
+     * @param array $page
+     * @return array
+     */
+    public function getUsers($pageSize, $page): array
     {
+
         return $this
             ->setSelect('`users`.`id`, `users`.`login`, `users`.`password`,`users`.`email`, `users`.`name`, `groups`.`cod`')
             ->setFrom('`users`, `groups`')

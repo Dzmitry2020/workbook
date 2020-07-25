@@ -9,8 +9,8 @@ use View\View;
 
 class TasksController extends AbstractTableController
 {
-    protected $tableName = "tasks";
-    protected $templateFolder = "tasks";
+    protected string $tableName = "tasks";
+    protected string $templateFolder = "tasks";
 
     public function __construct(View $view, mysqli $link)
     {
