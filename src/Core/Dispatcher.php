@@ -22,13 +22,16 @@ class Dispatcher
         ]);
 
         $this->view = new View();
-        $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'] ?? 'Default'))) . "Controller";
-        $this->actionName = "action" . ($_GET['action'] ?? 'Default');
+        $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'] ?? 'login'))) . "Controller";
+//        $this->actionName = "action" . ($_GET['action'] ?? 'Default');
+        $this->actionName = "action" . ($_GET['action'] ?? 'loginform');
     }
 
     public function run()
     {
-        $this->view->setLayout('mainLayout');
+        if ($this->actionName == 'loginform') {
+            $this->view->setLayout('plainLayout');
+        } else $this->view->setLayout('mainLayout');
 
         if (class_exists($this->controllerName)) {
             $controller = new $this->controllerName(

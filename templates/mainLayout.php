@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item<?= $controllerType == '' ? ' active' : '' ?>">
-                <a class="nav-link" href="/">Главная</a>
+                <a class="nav-link" href="?action=default&type=default">Главная</a>
             </li>
             <li class="nav-item dropdown<?= ($controllerType == 'users') ? ' active' : (($controllerType == 'groups') ? ' active' : '') ?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -54,7 +54,7 @@
             <!--                <a class="nav-link" href="?action=loginform&type=login">Logform</a>-->
             <!--            </li>-->
             <li class="nav-item<?= $controllerType == 'classes' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=logout&type=login">Выход</a>
+                <a class="nav-link" href="?action=logout&type=login">Выход<img src="/img/account-logout.svg" alt="Logout" width="24" height="24" title="Logout"></a>
             </li>
         </ul>
     </div>
@@ -66,6 +66,8 @@
 
 <main role="main" class="container">
     <div class="container-fluid" style="margin-top:80px">
+<!--        <span class="glyphicon glyphicon-search">Logout</span>-->
+
         <?php
         $this->body();
         ?>
