@@ -8,12 +8,18 @@ body {
 }
 
 .table {
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 /*.table {*/
 /*    border-collapse: collapse;*/
 /*}*/
+
+.table th {
+    background-color: lightgray;
+    /*text-align: center;*/
+    /*vertical-align: center;*/
+}
 
 .table td a:hover, .pagination a:hover {
     text-decoration: none;
@@ -24,17 +30,17 @@ body {
 .form select, input[type='text'], input[type='date'], input[type='password'] {
     /*background-color: lightgray;*/
     display: block;
-    margin: 10px 0;
-    padding: 10px;
+    margin-bottom: 16px;
     border: unset;
     border-bottom: 2px solid #e3e3e3;
     outline: none;
+    width: 250px;
 }
 
 .form textarea {
     display: block;
-    margin: 20px;
-    width: 250px;
+    margin-bottom: 16px;
+    width: 300px;
     height: 100px;
     border: unset;
     border-bottom: 2px solid #e3e3e3;
@@ -47,12 +53,15 @@ body {
     margin: 10px;
 }
 
+label{
+    font-weight: bold;
+}
 .form input[type='submit'] {
-    width: 100px;
-    background-color: #00ff55;
-    margin: 20px;
+    /*width: 100px;*/
+    /*background-color: #00ff55;*/
+    margin-top: 20px;
     display: block;
-    border: none;
+    /*border: none;*/
 }
 
 .form {
@@ -75,33 +84,33 @@ body {
     /*background-color: #000000;*/
 }
 
-.form-log {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/*.form-log {*/
+/*    display: block;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
-.form-log a {
-    color: #7c9ab7;
-    font-weight: bold;
-    text-decoration: none;
-}
+/*.form-log a {*/
+/*    color: #7c9ab7;*/
+/*    font-weight: bold;*/
+/*    text-decoration: none;*/
+/*}*/
 
-.form-log p {
-    margin: 10px 0;
-}
+/*.form-log p {*/
+/*    margin: 10px 0;*/
+/*}*/
 
-.form-log input {
-    margin: 10px 0;
-    padding: 10px;
-    border: unset;
-    border-bottom: 2px solid #e3e3e3;
-    outline: none;
-}
+/*.form-log input {*/
+/*    margin: 10px 0;*/
+/*    padding: 10px;*/
+/*    border: unset;*/
+/*    border-bottom: 2px solid #e3e3e3;*/
+/*    outline: none;*/
+/*}*/
 
-.form-log button {
-    padding: 10px;
-    background: #e3e3e3;
-    border: unset;
-    cursor: pointer;
-}
+/*.form-log button {*/
+/*    padding: 10px;*/
+/*    background: #e3e3e3;*/
+/*    border: unset;*/
+/*    cursor: pointer;*/
+/*}*/

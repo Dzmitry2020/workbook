@@ -35,6 +35,7 @@ echo $form->addInnerText(Html::Input()
     ->html())
     ->addInnerText(Html::Input()
         ->setType('submit')
+        ->setClass('btn btn-success')
         ->setValue('OK')
         ->html())
     ->html();

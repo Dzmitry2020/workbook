@@ -1,54 +1,57 @@
 <?php
 
-use View\Html;
+use TexLab\Html\Html;
 
 /** @var int $id
  * @var string $type
  * @var array $fields
  * @var array $comments
- * @var array $placeGroupsList
+ * @var array $groupsList
  */
 
-$form = Html::create('Form')
+$form = Html::Form()
     ->setMethod('POST')
     ->setAction("?action=edit&type=$type")
     ->setClass('form');
 
 foreach ($fields as $name => $value) {
-    $form->addInnerText(Html::create('Label')
+
+    $form->addInnerText(Html::Label()
         ->setFor($name)
         ->setInnerText($comments[$name])
         ->html());
     if ($name == 'password') {
-        $form->addInnerText(Html::create('Input')
+        $form->addInnerText(Html::Input()
             ->setType('password')
             ->setName($name)
             ->setId($name)
             ->html());
     } elseif ($name == 'group_id') {
 
-        $form->addInnerText(Html::create('Select')
+        $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
             ->setSelectedValue($value)
-            ->setData($placeGroupsList)
+            ->setData($groupsList)
             ->html());
     } else {
-        $form->addInnerText(Html::create('input')
+        $form->addInnerText(Html::Input()
             ->setName($name)
             ->setId($name)
             ->setValue($value)
             ->html());
     }
 }
+echo "<br>";
 
-echo $form->addInnerText(Html::create('Input')
+echo $form->addInnerText(Html::Input()
     ->setType('hidden')
     ->setName('id')
     ->setValue($id)
     ->html())
-    ->addInnerText(Html::create('Input')
+    ->addInnerText(Html::Input()
         ->setType('submit')
+        ->setClass('btn btn-success')
         ->setValue('OK')
         ->html())
     ->html();

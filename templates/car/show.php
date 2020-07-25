@@ -62,6 +62,7 @@ $form->addInnerText(
     (Html::Input()
         ->setType('submit')
         ->setValue('Добавить')
+        ->setClass('btn btn-success')
         ->html())
 );
 

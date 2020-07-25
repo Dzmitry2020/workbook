@@ -10,8 +10,8 @@ use TexLab\Html\Html;
 
 $form = Html::Form()
     ->setMethod('POST')
-    ->setAction($action)
-    ->setClass('form-log');
+    ->setAction($action);
+//    ->setClass('form');
 
 $form->addInnerText(Html::Label()
     ->setInnerText("Логин:")
@@ -21,7 +21,7 @@ $form->addInnerText(Html::Label()
 $form->addInnerText(Html::Input()
     ->setName("login")
     ->setId("login")
-//    ->setPlaceholder("Введите логин")
+    ->setPlaceholder("Введите логин")
     ->html());
 
 $form->addInnerText(Html::Label()
@@ -33,7 +33,7 @@ $form->addInnerText(Html::Input()
     ->setType('password')
     ->setName("pass")
     ->setId("pass")
-//    ->setPlaceholder("Введите пароль")
+    ->setPlaceholder("Введите пароль")
     ->html());
 
 $form->addInnerText(

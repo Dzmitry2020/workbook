@@ -69,10 +69,11 @@ foreach ($fields as $field) {
             ->html());
     }
 }
-
+echo "<br>";
 $form->addInnerText(
     Html::Input()
         ->setType('submit')
+        ->setClass('btn btn-success')
         ->setValue('Добавить')
         ->html()
 );

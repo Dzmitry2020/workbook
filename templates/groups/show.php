@@ -61,6 +61,7 @@ foreach ($fields as $field) {
 $form->addInnerText(
     Html::Input()
         ->setType('submit')
+        ->setClass('btn btn-success')
         ->setValue('Добавить')
         ->html()
 );

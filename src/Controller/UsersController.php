@@ -11,12 +11,14 @@ use View\View;
 
 class UsersController extends AbstractTableController
 {
+
     protected $tableName = "users";
     protected $templateFolder = "users";
+    protected $table;
 
     public function __construct(View $view, mysqli $link)
     {
-        parent::__construct($view, $link);
+       parent::__construct($view, $link);
         $this->table = new UserModel(
             $this->tableName,
             $link
@@ -33,7 +35,9 @@ class UsersController extends AbstractTableController
                 ->getUsers(
                     Config::PAGE_SIZE,
                     $data['get']['page'] ?? 1
-                )
+                ),
+            'fields' => array_diff($this->table->getColumnsNames(), ['id']),
+            'comments' => $this->table->getColumnsComments()
         ]);
     }
 

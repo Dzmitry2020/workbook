@@ -1,6 +1,6 @@
 <?php
 
-use View\Html;
+use TexLab\Html\Html;
 
 /** @var int $id
  * @var string $type
@@ -8,17 +8,17 @@ use View\Html;
  * @var array $comments
  */
 
-$form = Html::create('Form')
+$form = Html::Form()
     ->setMethod('POST')
     ->setAction("?action=edit&type=$type")
     ->setClass('form');
 
 foreach ($fields as $name => $field) {
-    $form->addInnerText(Html::create('Label')
+    $form->addInnerText(Html::Label()
         ->setFor($name)
         ->setInnerText($comments[$name])
         ->html());
-    $form->addInnerText(Html::create('input')
+    $form->addInnerText(Html::Input()
         ->setName($name)
         ->setId($name)
         ->setType($name == 'Driver' ? 'checkbox' : 'text')
@@ -27,14 +27,16 @@ foreach ($fields as $name => $field) {
         ->html());
 }
 
+echo "<br>";
 echo $form
-    ->addInnerText(Html::create('Input')
+    ->addInnerText(Html::Input()
     ->setType('hidden')
     ->setName('id')
     ->setValue($id)
     ->html())
-    ->addInnerText(Html::create('Input')
+    ->addInnerText(Html::Input()
         ->setType('submit')
+        ->setClass('btn btn-success')
         ->setValue('OK')
         ->html())
     ->html();

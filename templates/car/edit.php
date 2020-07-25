@@ -20,5 +20,7 @@ foreach ($fields as $name => $value) {
 }
 
 echo $form->addInnerText(Html::Input()->setType('hidden')->setName('id')->setValue($id)->html())
-    ->addInnerText(Html::Input()->setType('submit')->setValue('OK')->html())
+    ->addInnerText(Html::Input()->setType('submit')->setClass('btn btn-success')->setValue('OK')->html())
     ->html();
+
+
