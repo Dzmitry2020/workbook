@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Model;
 
 use TexLab\MyDB\Runner;
@@ -18,5 +17,4 @@ AND BINARY `users`.`password` = '$password'
 SQL
         )[0];
     }
-
 }

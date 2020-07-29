@@ -91,7 +91,7 @@ foreach ($fields as $field) {
             ->setId($field)
             ->setValue(date('Y-m-d'))
             ->html());
-    } elseif ($field == 'place_id') {
+    } elseif ($field == 'places_id') {
         $form->addInnerText(Html::Select()
             ->setName($field)
             ->setId($field)

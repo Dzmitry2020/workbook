@@ -34,10 +34,11 @@ class Dispatcher
 
         if ($this->actionName == 'loginform') {
             $this->view->setLayout('plainLayout');
-        } else $this->view->setLayout('mainLayout');
+        } else {
+            $this->view->setLayout('mainLayout');
+        }
 
         if (!(in_array($_GET['type'], $blacklist[$cod]))) {
-
             if (class_exists($this->controllerName)) {
                 $controller = new $this->controllerName(
                     $this->view,
@@ -54,7 +55,6 @@ class Dispatcher
                 } else {
                     header("HTTP/1.0 404 Not Found");
                 }
-
             } else {
                 header("HTTP/1.0 404 Not Found");
             }

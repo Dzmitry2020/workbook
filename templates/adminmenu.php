@@ -17,18 +17,16 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="?action=show&type=users">Пользователи</a>
                     <a class="dropdown-item" href="?action=show&type=groups">Группы</a>
-                    <!--                    <div class="dropdown-divider"></div>-->
-                    <!--                    <a class="dropdown-item" href="#">Something else here</a>-->
                 </div>
             </li>
-            <li class="nav-item dropdown<?= ($controllerType == 'car') ? ' active' : (($controllerType == 'people') ? ' active' : (($controllerType == 'place') ? ' active' : '')) ?>">
+            <li class="nav-item dropdown<?= ($controllerType == 'cars') ? ' active' : (($controllerType == 'people') ? ' active' : (($controllerType == 'places') ? ' active' : '')) ?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Справочники
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="?action=show&type=place">Локации</a>
-                    <a class="dropdown-item" href="?action=show&type=car">Транспорт</a>
+                    <a class="dropdown-item" href="?action=show&type=places">Локации</a>
+                    <a class="dropdown-item" href="?action=show&type=cars">Транспорт</a>
                     <a class="dropdown-item" href="?action=show&type=people">Персонал</a>
                 </div>
             </li>

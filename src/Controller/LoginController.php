@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Controller;
 
 use Core\Config;
@@ -53,6 +52,4 @@ class LoginController extends AbstractController
         unset($_SESSION['user']);
         $this->redirect('/');
     }
-
-
 }

@@ -63,5 +63,4 @@ class View
         }
         include "$this->path$this->folder$this->template.php";
     }
-
 }

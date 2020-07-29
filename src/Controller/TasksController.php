@@ -3,7 +3,7 @@
 namespace Controller;
 
 use Core\Config;
-use Model\TaskModel;
+use Model\TasksModel;
 use mysqli;
 use View\View;
 
@@ -15,7 +15,7 @@ class TasksController extends AbstractTableController
     public function __construct(View $view, mysqli $link)
     {
         parent::__construct($view, $link);
-        $this->table = new TaskModel(
+        $this->table = new TasksModel(
             $this->tableName,
             $link
         );

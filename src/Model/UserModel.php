@@ -1,4 +1,5 @@
 <?php
+
 /** @var array $page */
 
 namespace Model;
@@ -25,7 +26,9 @@ class UserModel extends DbEntity
     {
 
         return $this
-            ->setSelect('`users`.`id`, `users`.`login`, `users`.`password`,`users`.`email`, `users`.`name`, `groups`.`cod`')
+            ->setSelect(
+                '`users`.`id`, `users`.`login`, `users`.`password`,`users`.`email`, `users`.`name`, `groups`.`cod`'
+            )
             ->setFrom('`users`, `groups`')
             ->setWhere('`users`.`group_id` = `groups`.`id`')
             ->setOrderBy('`groups`.`name`')

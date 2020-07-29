@@ -23,6 +23,5 @@ class PeopleController extends AbstractTableController
     {
         $this->prepareData($data);
         parent::actionEdit($data);
-
     }
 }
