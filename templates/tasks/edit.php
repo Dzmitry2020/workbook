@@ -4,15 +4,18 @@ use TexLab\Html\Html;
 
 /** @var int $id
  * @var string $type
+ * @var string $page
  * @var array $fields
  * @var array $comments
  * @var array $placeNamesList
  * @var array $taskStatusList
+ * @var array $workerNameList
  */
+
 
 $form = Html::Form()
     ->setMethod('POST')
-    ->setAction("?action=edit&type=$type")
+    ->setAction("?action=edit&type=$type&page=$page")
     ->setClass('form');
 
 foreach ($fields as $name => $value) {
@@ -55,6 +58,19 @@ foreach ($fields as $name => $value) {
             ->html());
     }
 }
+
+$form->addInnerText(Html::Label()
+    ->setFor('workers')
+    ->setInnerText('Исполнители')
+    ->html());
+
+$form->addInnerText(Html::Select()
+    ->setName('workers')
+    ->setId('workers')
+    ->setData($workerNameList)
+    ->setSize(5)
+    ->setMultiple(1)
+    ->html());
 
 echo $form->addInnerText(Html::Input()
     ->setType('hidden')

@@ -25,8 +25,9 @@ class TasksController extends AbstractTableController
     {
         parent::actionShow($data);
         $this->view->addData([
-            'placeNamesList' => $this->table->getNames(),
+            'placeNamesList' => $this->table->getPlaceList(),
             'taskStatusList' => $this->table->getStatus(),
+            'workerNameList' => $this->table->getWorkerList(),
             'table' => $this
                 ->table
                 ->getTask(
@@ -40,8 +41,23 @@ class TasksController extends AbstractTableController
     {
         parent::actionShowEdit($data);
         $this->view->addData([
-            'placeNamesList' => $this->table->getNames(),
-            'taskStatusList' => $this->table->getStatus()
+            'placeNamesList' => $this->table->getPlaceList(),
+            'taskStatusList' => $this->table->getStatus(),
+            'workerNameList' => $this->table->getWorkerList()
         ]);
+    }
+
+    public function actionAdd(array $data)
+    {
+        $workers = $data['post']['workers'] ?? [];
+        unset($data['post']['workers']);
+
+        $task_id = $this->table->add($data['post']);
+
+        $this->table->addWorkers(
+            $workers,
+            $task_id
+        );
+        $this->redirect('?action=show&type=' . $this->getClassName());
     }
 }

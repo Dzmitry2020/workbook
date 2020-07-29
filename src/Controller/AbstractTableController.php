@@ -7,6 +7,7 @@ use TexLab\MyDB\DbEntity;
 use View\View;
 use mysqli;
 
+/** @var int $pageCount */
 abstract class AbstractTableController extends AbstractController
 {
     protected DbEntity $table; // CRUDInterface
@@ -53,9 +54,17 @@ abstract class AbstractTableController extends AbstractController
     {
         if (isset($data['get']['id'])) {
             $id = $data['get']['id'];
-            $this->table->del(['id' => $id]);;
+            $this->table->del(['id' => $id]);
         }
-        $this->redirect('?action=show&type=' . $this->getClassName());
+        if (isset($data['get']['page'])) {
+            $page = min(
+                $this->table->setPageSize(Config::PAGE_SIZE)->pageCount(),
+                $data['get']['page']
+            );
+        } else {
+            $page = 1;
+        }
+        $this->redirect('?action=show&type=' . $this->getClassName() . "&page=$page");
     }
 
     public function actionShowEdit(array $data)

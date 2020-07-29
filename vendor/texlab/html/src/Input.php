@@ -38,7 +38,7 @@ class Input extends AbstractTag
 
     public function html()
     {
-        return "<input type='$this->type'$this->value$this->name$this->style$this->class$this->id$this->checked$this->placeholder>";
+        return "<input type='$this->type'$this->value$this->name$this->style$this->class$this->id$this->placeholder$this->checked>";
 
     }
 }

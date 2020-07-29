@@ -4,4 +4,3 @@ vendor/*
 .phpunit.result.cache
 composer.lock
 vendor/composer/package-versions-deprecated
-vendor/composer/package-versions-deprecated

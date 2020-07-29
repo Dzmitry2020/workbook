@@ -8,16 +8,23 @@
  * @var array $table
  * @var array $placeNamesList
  * @var array $taskStatusList
+ * @var array $workerNameList
+ * @var string $pageCurrent
  */
 
 use TexLab\Html\Html;
+
+$pageCurrent = $this->data['currentPage'];
+if ($pageCurrent > $pageCount) {
+    $pageCurrent = $pageCount;
+}
 
 if ($pageCount > 1) {
     echo Html::Pagination()
         ->setClass('pagination')
         ->setUrlPrefix("?action=show&type=" . $type)
         ->setPageCount($pageCount)
-        ->setCurrentPage($this->data['currentPage'])
+        ->setCurrentPage($pageCurrent)
         ->html();
 }
 
@@ -26,6 +33,8 @@ $comments[] = '';
 
 $delA = Html::A()->addInnerText('⛔')->setClass('del');
 $edtA = Html::A()->addInnerText('✏')->setClass('edit');
+
+//print_r($page);
 
 foreach ($table as &$row) {
     switch ($row['status']) {
@@ -42,14 +51,14 @@ foreach ($table as &$row) {
             $row['status'] = '✅';
             break;
     }
+
     $row[] = $delA
-        ->setHref("?action=del&type=$type&id=$row[id]")
+        ->setHref("?action=del&type=$type&id=$row[id]&page=$pageCurrent")
         ->html();
     $row[] = $edtA
-        ->setHref("?action=showedit&type=$type&id=$row[id]")
+        ->setHref("?action=showedit&type=$type&id=$row[id]&page=$pageCurrent")
         ->html();
 }
-
 
 
 echo Html::Table()
@@ -96,6 +105,19 @@ foreach ($fields as $field) {
             ->html());
     }
 }
+
+$form->addInnerText(Html::Label()
+    ->setFor('workers')
+    ->setInnerText('Исполнители')
+    ->html());
+
+$form->addInnerText(Html::Select()
+    ->setName('workers[]')
+    ->setId('workers')
+    ->setData($workerNameList)
+    ->setSize(5)
+    ->setMultiple(1)
+    ->html());
 
 $form->addInnerText(
     Html::Input()

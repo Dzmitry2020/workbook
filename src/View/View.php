@@ -7,7 +7,7 @@ class View
     private string $layout;
     private string $template;
     private string $path;
-    private array $data;
+    private array $data = [];
     private string $folder;
 
     public function __construct()
@@ -43,6 +43,11 @@ class View
     {
         $this->data = array_merge($this->data ?? [], $data);
         return $this;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
     }
 
     public function view()
