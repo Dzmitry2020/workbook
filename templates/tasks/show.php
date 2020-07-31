@@ -15,9 +15,6 @@
 use TexLab\Html\Html;
 
 $pageCurrent = $this->data['currentPage'];
-if ($pageCurrent > $pageCount) {
-    $pageCurrent = $pageCount;
-}
 
 if ($pageCount > 1) {
     echo Html::Pagination()
@@ -33,8 +30,6 @@ $comments[] = '';
 
 $delA = Html::A()->addInnerText('⛔')->setClass('del');
 $edtA = Html::A()->addInnerText('✏')->setClass('edit');
-
-//print_r($page);
 
 foreach ($table as &$row) {
     switch ($row['status']) {
@@ -60,13 +55,11 @@ foreach ($table as &$row) {
         ->html();
 }
 
-
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
     ->setClass('table')
     ->html();
-
 
 $form = Html::Form()
     ->setMethod('POST')

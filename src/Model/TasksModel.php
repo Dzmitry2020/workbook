@@ -28,7 +28,7 @@ class TasksModel extends DbEntity
         return $res;
     }
 
-    public function getWorkerList(): array
+    public function getPeopleList(): array
     {
         $res = [];
         foreach (
@@ -46,11 +46,35 @@ class TasksModel extends DbEntity
         return $res;
     }
 
+    public function getWorkersIds(int $idTask): array
+    {
+        $res = [];
+        foreach (
+            $this->runSQL(
+                "SELECT `people_id` FROM `workers` WHERE `id`=$idTask"
+            ) as $row
+        ) {
+            $res[] = $row['people_id'];
+        }
+        return $res;
+    }
+
     public function addWorkers(array $peopleIds, int $taskId)
     {
         $worker = new DbEntity('workers', $this->mysqli);
         foreach ($peopleIds as $peopleId) {
             $worker->add(['people_id' => $peopleId, 'tasks_id' => $taskId]);
+        }
+    }
+
+    public function delWorkers(int $taskId)
+    {
+        $workers = new DbEntity('workers', $this->mysqli);
+        $workerIds = $workers->runSQL(
+            "SELECT `id` FROM `workers` WHERE `tasks_id`= $taskId"
+        );
+        foreach ($workerIds as $workerId) {
+            $workers->del(['id' => $workerId['id']]);
         }
     }
 

@@ -47,7 +47,12 @@ abstract class AbstractTableController extends AbstractController
     public function actionAdd(array $data)
     {
         $this->table->add($data['post']);
-        $this->redirect('?action=show&type=' . $this->getClassName());
+
+        $this->redirect(
+            '?action=show&type=' . $this->getClassName()
+            . "&page="
+            . $this->table->setPageSize(Config::PAGE_SIZE)->pageCount()
+        );
     }
 
     public function actionDel(array $data)
@@ -82,7 +87,8 @@ abstract class AbstractTableController extends AbstractController
                 'fields' => $viewData,
                 'id' => $id,
                 'type' => $this->getClassName(),
-                'comments' => $this->table->getColumnsComments()
+                'comments' => $this->table->getColumnsComments(),
+                'currentPage' => ($data['get']['page'] ?? 1)
             ]);
     }
 

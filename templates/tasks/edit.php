@@ -4,18 +4,19 @@ use TexLab\Html\Html;
 
 /** @var int $id
  * @var string $type
- * @var string $page
  * @var array $fields
  * @var array $comments
  * @var array $placeNamesList
  * @var array $taskStatusList
  * @var array $workerNameList
+ * @var string $pageCurrent
  */
 
+//$pageCurrent = $this->data['currentPage'];
 
 $form = Html::Form()
     ->setMethod('POST')
-    ->setAction("?action=edit&type=$type&page=$page")
+    ->setAction("?action=edit&type=$type&page=" . $this->data['currentPage'])
     ->setClass('form');
 
 foreach ($fields as $name => $value) {
@@ -36,7 +37,7 @@ foreach ($fields as $name => $value) {
             ->setId($name)
             ->setValue($value)
             ->html());
-    } elseif ($name == 'place_id') {
+    } elseif ($name == 'places_id') {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
@@ -72,7 +73,7 @@ $form->addInnerText(Html::Select()
     ->setMultiple(1)
     ->html());
 
-echo $form->addInnerText(Html::Input()
+$form->addInnerText(Html::Input()
     ->setType('hidden')
     ->setName('id')
     ->setValue($id)
@@ -83,3 +84,5 @@ echo $form->addInnerText(Html::Input()
         ->setValue('OK')
         ->html())
     ->html();
+
+echo $form->html();

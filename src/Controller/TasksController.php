@@ -27,7 +27,7 @@ class TasksController extends AbstractTableController
         $this->view->addData([
             'placeNamesList' => $this->table->getPlaceList(),
             'taskStatusList' => $this->table->getStatus(),
-            'workerNameList' => $this->table->getWorkerList(),
+            'workerNameList' => $this->table->getPeopleList(),
             'table' => $this
                 ->table
                 ->getTask(
@@ -43,8 +43,22 @@ class TasksController extends AbstractTableController
         $this->view->addData([
             'placeNamesList' => $this->table->getPlaceList(),
             'taskStatusList' => $this->table->getStatus(),
-            'workerNameList' => $this->table->getWorkerList()
+            'workerNameList' => $this->table->getPeopleList(),
+            'workersIds' => $this->table->getWorkersIds($data['get']['id'])
         ]);
+    }
+
+    public function actionEdit(array $data)
+    {
+        $editData = $data['post'];
+        unset($editData['id']);
+        unset($editData['workers']);
+
+        $this->table->edit(['id' => $data['post']['id']], $editData);
+        $this->redirect(
+            '?action=show&type=' . $this->getClassName()
+            . '&page=' . $data['get']['page']
+        );
     }
 
     public function actionAdd(array $data)
@@ -58,6 +72,30 @@ class TasksController extends AbstractTableController
             $workers,
             $task_id
         );
-        $this->redirect('?action=show&type=' . $this->getClassName());
+
+        $this->redirect(
+            '?action=show&type=' . $this->getClassName()
+            . "&page="
+            . $this->table->setPageSize(Config::PAGE_SIZE)->pageCount()
+        );
+    }
+
+    public function actionDel(array $data)
+    {
+        if (isset($data['get']['id'])) {
+            $id = $data['get']['id'];
+            $this->table->del(['id' => $id]);
+            $this->table->delWorkers($id);
+        }
+
+        if (isset($data['get']['page'])) {
+            $page = min(
+                $this->table->setPageSize(Config::PAGE_SIZE)->pageCount(),
+                $data['get']['page']
+            );
+        } else {
+            $page = 1;
+        }
+        $this->redirect('?action=show&type=' . $this->getClassName() . "&page=$page");
     }
 }
