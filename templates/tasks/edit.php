@@ -40,15 +40,14 @@ foreach ($fields as $name => $value) {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
-            ->setSelectedValues([1 => $value])
+            ->setSelectedValues([$value])
             ->setData($placeNamesList)
             ->html());
     } elseif ($name == 'status') {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
-//            ->setSelectedValue($value)
-            ->setSelectedValues([1 => $value])
+            ->setSelectedValues([$value])
             ->setData($taskStatusList)
             ->html());
     } else {
@@ -66,7 +65,7 @@ $form->addInnerText(Html::Label()
     ->html());
 
 $form->addInnerText(Html::Select()
-    ->setName('workers')
+    ->setName('workers[]')
     ->setId('workers')
     ->setMultiple(true)
     ->setSize(5)

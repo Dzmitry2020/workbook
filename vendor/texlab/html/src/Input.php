@@ -4,30 +4,45 @@ namespace TexLab\Html;
 
 class Input extends AbstractTag
 {
-    use ValueTrait, NameTrait, PlaceholderTrait;
+    use ValueTrait;
+    use NameTrait;
+    use PlaceholderTrait;
 
-    protected $type = "text";
-    protected $checked = '';
+    protected string $type = "text";
+    protected string $checked = '';
 
+    /**
+     * @param string $type
+     * @return $this
+     */
     public function setType(string $type)
     {
-        if (in_array($type, [
-            'text',
-            'button',
-            'submit',
-            'reset',
-            'password',
-            'file',
-            'checkbox',
-            'radio',
-            'hidden',
-            'date'
-        ])) {
+        if (
+            in_array(
+                $type,
+                [
+                'text',
+                'button',
+                'submit',
+                'reset',
+                'password',
+                'file',
+                'checkbox',
+                'radio',
+                'hidden',
+                'date'
+                ]
+            )
+        ) {
             $this->type = $type;
         }
         return $this;
     }
 
+    /**
+     * @param bool $value
+     * @return $this
+     */
     public function setChecked(bool $value)
     {
         if (in_array($this->type, ['radio', 'checkbox']) && $value) {
@@ -36,9 +51,16 @@ class Input extends AbstractTag
         return $this;
     }
 
-    public function html()
+    public function html(): string
     {
-        return "<input type='$this->type'$this->value$this->name$this->style$this->class$this->id$this->placeholder$this->checked>";
-
+        return "<input type='$this->type'" .
+            $this->value .
+            $this->name .
+            $this->style .
+            $this->class .
+            $this->id .
+            $this->placeholder .
+            $this->checked .
+            ">";
     }
 }

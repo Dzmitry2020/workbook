@@ -1,16 +1,17 @@
 <?php
 
-
 namespace TexLab\Html;
-
 
 class Option extends AbstractTag
 {
-    use InnerTextTrait, ValueTrait;
+    use InnerTextTrait;
+    use ValueTrait;
 
+    protected string $selected = '';
 
-    protected $selected = '';
-
+    /**
+     * @return $this
+     */
     public function setSelected()
     {
         $this->selected = ' selected';
@@ -18,6 +19,9 @@ class Option extends AbstractTag
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setUnSelected()
     {
         $this->selected = '';
@@ -25,7 +29,7 @@ class Option extends AbstractTag
         return $this;
     }
 
-    public function html()
+    public function html(): string
     {
         return "<option$this->style$this->class$this->id$this->value$this->selected>$this->innerText</option>";
     }

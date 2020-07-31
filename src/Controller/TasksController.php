@@ -50,13 +50,29 @@ class TasksController extends AbstractTableController
 
     public function actionEdit(array $data)
     {
+        $workers = $data['post']['workers'] ?? [];
         $editData = $data['post'];
         unset($editData['id']);
         unset($editData['workers']);
 
-        $this->table->edit(['id' => $data['post']['id']], $editData);
+        $this->table->edit(
+            ['id' => $data['post']['id']],
+            $editData
+        );
+
+        if ($workers != $this->table->getWorkersIds($data['post']['id'])) {
+            $this->table->delWorkers(
+                $data['post']['id']
+            );
+            $this->table->addWorkers(
+                $data['post']['id'],
+                $workers
+            );
+        }
+
         $this->redirect(
-            '?action=show&type=' . $this->getClassName()
+            '?action=show&type='
+            . $this->getClassName()
             . '&page=' . $data['get']['page']
         );
     }
@@ -69,8 +85,8 @@ class TasksController extends AbstractTableController
         $task_id = $this->table->add($data['post']);
 
         $this->table->addWorkers(
-            $workers,
-            $task_id
+            $task_id,
+            $workers
         );
 
         $this->redirect(

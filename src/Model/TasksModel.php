@@ -51,7 +51,7 @@ class TasksModel extends DbEntity
         $res = [];
         foreach (
             $this->runSQL(
-                'SELECT `people_id` FROM `workers` WHERE `tasks_id`='.$idTask
+                'SELECT `people_id` FROM `workers` WHERE `tasks_id`=' . $idTask
             ) as $row
         ) {
             $res[] = $row['people_id'];
@@ -59,11 +59,16 @@ class TasksModel extends DbEntity
         return $res;
     }
 
-    public function addWorkers(array $peopleIds, int $taskId)
+    public function addWorkers(int $taskId, array $peopleIds)
     {
         $worker = new DbEntity('workers', $this->mysqli);
         foreach ($peopleIds as $peopleId) {
-            $worker->add(['people_id' => $peopleId, 'tasks_id' => $taskId]);
+            $worker->add(
+                [
+                    'people_id' => $peopleId,
+                    'tasks_id' => $taskId
+                ]
+            );
         }
     }
 
