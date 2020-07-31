@@ -51,7 +51,7 @@ class TasksModel extends DbEntity
         $res = [];
         foreach (
             $this->runSQL(
-                "SELECT `people_id` FROM `workers` WHERE `id`=$idTask"
+                'SELECT `people_id` FROM `workers` WHERE `tasks_id`='.$idTask
             ) as $row
         ) {
             $res[] = $row['people_id'];

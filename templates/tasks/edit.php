@@ -9,10 +9,9 @@ use TexLab\Html\Html;
  * @var array $placeNamesList
  * @var array $taskStatusList
  * @var array $workerNameList
+ * @var array $workersIds
  * @var string $pageCurrent
  */
-
-//$pageCurrent = $this->data['currentPage'];
 
 $form = Html::Form()
     ->setMethod('POST')
@@ -41,14 +40,15 @@ foreach ($fields as $name => $value) {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
-            ->setSelectedValue($value)
+            ->setSelectedValues([1 => $value])
             ->setData($placeNamesList)
             ->html());
     } elseif ($name == 'status') {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
-            ->setSelectedValue($value)
+//            ->setSelectedValue($value)
+            ->setSelectedValues([1 => $value])
             ->setData($taskStatusList)
             ->html());
     } else {
@@ -68,9 +68,10 @@ $form->addInnerText(Html::Label()
 $form->addInnerText(Html::Select()
     ->setName('workers')
     ->setId('workers')
-    ->setData($workerNameList)
+    ->setMultiple(true)
     ->setSize(5)
-    ->setMultiple(1)
+    ->setSelectedValues($workersIds)
+    ->setData($workerNameList)
     ->html());
 
 $form->addInnerText(Html::Input()
