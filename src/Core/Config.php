@@ -4,13 +4,10 @@ namespace Core;
 
 class Config
 {
-    const MYSQL_HOST = 'localhost';
-    const MYSQL_USER_NAME = 'root';
-    const MYSQL_PASSWORD = 'root';
-    const MYSQL_DATABASE = 'wb_db';
-    const PAGE_SIZE = 5;
-    const TASK_STATUS = ['планируется',
-                        'выполняется',
-                        'приостановлено',
-                        'завершено'];
+    public const MYSQL_HOST = 'localhost';
+    public const MYSQL_USER_NAME = 'root';
+    public const MYSQL_PASSWORD = 'root';
+    public const MYSQL_DATABASE = 'wb_db';
+    public const PAGE_SIZE = 5;
+    public const SALT = 'lalalala';
 }

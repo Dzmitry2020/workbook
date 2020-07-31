@@ -2,15 +2,13 @@
 
 namespace View;
 
-use View\Html\Html;
-
 class View
 {
-    private $layout;
-    private $template;
-    private $path;
-    private $data;
-    private $folder;
+    private string $layout;
+    private string $template;
+    private string $path;
+    private array $data = [];
+    private string $folder;
 
     public function __construct()
     {
@@ -47,6 +45,11 @@ class View
         return $this;
     }
 
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
     public function view()
     {
         $controllerType = $this->data['controllerType'];
@@ -58,7 +61,6 @@ class View
         if (is_array($this->data)) {
             extract($this->data);
         }
-        Html::create('input');
         include "$this->path$this->folder$this->template.php";
     }
 }

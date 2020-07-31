@@ -6,7 +6,7 @@ use View\View;
 
 abstract class AbstractController
 {
-    protected $view;
+    protected View $view;
 
     public function __construct(View $view)
     {
@@ -18,7 +18,7 @@ abstract class AbstractController
         header("Location: $location");
     }
 
-    protected function getClassName()
+    protected function getClassName(): string
     {
         preg_match(
             '/(.*)Controller$/',

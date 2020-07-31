@@ -1,53 +1,69 @@
 <?php
 
-use View\Html\Html;
 
 /** @var int $pageCount Количество страниц
  * @var array $fields Список полей таблицы
  * @var array $comments Комментарии к полям таблицы
  * @var string $type Имя контроллера
+ * @var array $table
  */
 
-/** @var array $columnsTypes */
-//print_r($columnsTypes);
+use TexLab\Html\Html;
 
-echo Html::create("Pagination")
-    ->setClass('pagination')
-    ->setControllerType($type)
-    ->setPageCount($pageCount)
-    ->html();
+if ($pageCount > 1) {
+    echo Html::Pagination()
+        ->setClass('pagination')
+        ->setUrlPrefix("?action=show&type=" . $type)
+        ->setPageCount($pageCount)
+        ->setCurrentPage($this->data['currentPage'])
+        ->html();
+}
 
-/** @var array $table */
-echo Html::create('TableEdited')
-    ->setControllerType($type)
+$comments[] = '';
+$comments[] = '';
+
+$delA = Html::A()->addInnerText('⛔')->setClass('del');
+$edtA = Html::A()->addInnerText('✏')->setClass('edit');
+
+foreach ($table as &$row) {
+    $row['driver'] = $row['driver'] ? '☑' : '';
+    $row[] = $delA
+        ->setHref("?action=del&type=$type&id=$row[id]")
+        ->html();
+    $row[] = $edtA
+        ->setHref("?action=showedit&type=$type&id=$row[id]")
+        ->html();
+}
+
+echo Html::Table()
     ->setHeaders($comments)
-    ->data($table)
+    ->setData($table)
     ->setClass('table')
     ->html();
 
-
-$form = Html::create('Form')
+$form = Html::Form()
     ->setMethod('POST')
     ->setAction("?action=add&type=$type")
     ->setClass('form');
 
 foreach ($fields as $field) {
 
-    $form->addContent(Html::create('Label')
+    $form->addInnerText(Html::Label()
         ->setFor($field)
         ->setInnerText($comments[$field])
         ->html());
 
-    $form->addContent(Html::create('input')
+    $form->addInnerText(Html::Input()
         ->setName($field)
-        ->setType($field=='Driver'?'checkbox':'text')
+        ->setType($field=='driver'?'checkbox':'text')
         ->setId($field)
         ->html());
 }
-
-$form->addContent(
-    Html::create('Input')
+echo "<br>";
+$form->addInnerText(
+    Html::Input()
         ->setType('submit')
+        ->setClass('btn btn-success')
         ->setValue('Добавить')
         ->html()
 );

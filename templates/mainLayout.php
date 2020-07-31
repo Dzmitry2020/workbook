@@ -1,6 +1,8 @@
-<?php /** @var string $controllerType */ ?>
+<?php
+/** @var string $controllerType */
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -12,40 +14,32 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!--    <a class="navbar-brand" href="#">Navbar</a>-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item<?= $controllerType == '' ? ' active' : '' ?>">
-                <a class="nav-link" href="/">Главная</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'car' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=car">Транспорт</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'people' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=people">Персонал</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'place' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=place">Локации</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'tasks' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=tasks">Задачи</a>
-            </li>
-        </ul>
-    </div>
-</nav>
 
 <?php
-$this->body();
+switch ($_SESSION['user']['cod']) {
+    case 'admin':
+        include 'adminmenu.php';
+        break;
+    case 'user':
+        include 'usermenu.php';
+        break;
+    default:
+        include 'guestmenu.php';
+}
 ?>
-<script src="js/jquery-3.5.1.slim.min.js">
+
+<main role="main" class="container">
+    <div class="container-fluid" style="margin-top:80px">
+        <?php
+        $this->body();
+        ?>
+    </div>
+</main>
+
+<script src="js/jquery-3.5.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/my.js"></script>
 </body>
 
 </html>

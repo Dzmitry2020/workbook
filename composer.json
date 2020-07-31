@@ -1,7 +1,9 @@
 {
+  "prefer-stable": true,
   "require": {
     "texlab/mydb": "^0.0.4",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "texlab/html": "^0.06"
   },
   "autoload": {
     "psr-4": {
@@ -10,5 +12,19 @@
       "View\\": "src/View",
       "Model\\": "src/Model"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.2",
+    "phpstan/phpstan": "^0.12",
+    "vimeo/psalm": "^3.0@dev",
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "minimum-stability": "dev",
+  "scripts": {
+    "test": "phpunit --testsuite alltests",
+    "phpstan": "phpstan analyse -c phpstan.neon",
+    "psalm": "psalm",
+    "codestyle": "phpcs",
+    "codestyle:fix": "phpcbf"
   }
 }
