@@ -24,22 +24,26 @@ if ($pageCount > 1) {
 $comments[] = '';
 $comments[] = '';
 
-$delA = Html::A()->addInnerText('⛔')->setClass('del');
-$edtA = Html::A()->addInnerText('✏')->setClass('edit');
+$edtA = Html::A()
+    ->addInnerText('<i class="fa fa-edit"></i>')
+    ->setClass('btn btn-success btn-sm edit');
+$delA = Html::A()
+    ->addInnerText('<i class="fa fa-trash"></i>')
+    ->setClass('btn btn-danger btn-sm del');
 
 foreach ($table as &$row) {
-    $row[] = $delA
-        ->setHref("?action=del&type=$type&id=$row[id]")
-        ->html();
     $row[] = $edtA
         ->setHref("?action=showedit&type=$type&id=$row[id]")
+        ->html();
+    $row[] = $delA
+        ->setHref("?action=del&type=$type&id=$row[id]")
         ->html();
 }
 
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
-    ->setClass('table')
+    ->setClass('table shadow ')
     ->html();
 
 $form = Html::Form()
@@ -54,13 +58,12 @@ foreach ($fields as $field) {
         ->setInnerText($comments[$field])
         ->html());
 
-    if ($field == 'FullName'){
+    if ($field == 'FullName') {
         $form->addInnerText(Html::Textarea()
             ->setName($field)
             ->setId($field)
             ->html());
-    }
-    else {
+    } else {
         $form->addInnerText(Html::Input()
             ->setName($field)
             ->setId($field)
