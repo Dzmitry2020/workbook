@@ -43,6 +43,7 @@ class TasksModel extends DbEntity
                 . mb_substr($row['fatherName'], 0, 1)
                 . '.';
         }
+//        print_r($res);
         return $res;
     }
 

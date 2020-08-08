@@ -33,6 +33,9 @@
             <li class="nav-item<?= $controllerType == 'tasks' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=tasks">Задачи</a>
             </li>
+            <li class="nav-item<?= $controllerType == 'trips' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=show&type=trips">Поездки</a>
+            </li>
             <!--			<li class="nav-item--><? //= $controllerType == 'classes' ? ' active' : '' ?><!--">-->
             <!--                <a class="nav-link" href="?action=loginform&type=login">Logform</a>-->
             <!--            </li>-->

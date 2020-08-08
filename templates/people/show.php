@@ -18,8 +18,7 @@ if ($pageCount > 1) {
         ->html();
 }
 
-$comments[] = '';
-$comments[] = '';
+$comments[] = 'Действия';
 
 $edtA = Html::A()
     ->addInnerText('<i class="fa fa-edit"></i>')
@@ -30,11 +29,12 @@ $delA = Html::A()
 
 foreach ($table as &$row) {
     $row[] = $edtA
-        ->setHref("?action=showedit&type=$type&id=$row[id]")
-        ->html();
-    $row[] = $delA
-        ->setHref("?action=del&type=$type&id=$row[id]")
-        ->html();
+            ->setHref("?action=showedit&type=$type&id=$row[id]")
+            ->html()
+        . "\n"
+        . $delA
+            ->setHref("?action=del&type=$type&id=$row[id]")
+            ->html();
 
     $row['driver'] = ($row['driver'] == 1) ? '☑' : '';
 }

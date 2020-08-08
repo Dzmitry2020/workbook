@@ -25,8 +25,7 @@ if ($pageCount > 1) {
         ->html();
 }
 
-$comments[] = '';
-$comments[] = '';
+$comments[] = 'Действия';
 
 $edtA = Html::A()
     ->addInnerText('<i class="fa fa-edit"></i>')
@@ -37,11 +36,12 @@ $delA = Html::A()
 
 foreach ($table as &$row) {
     $row[] = $edtA
-        ->setHref("?action=showedit&type=$type&id=$row[id]&page=$pageCurrent")
-        ->html();
-    $row[] = $delA
-        ->setHref("?action=del&type=$type&id=$row[id]&page=$pageCurrent")
-        ->html();
+            ->setHref("?action=showedit&type=$type&id=$row[id]&page=$pageCurrent")
+            ->html()
+        . "\n"
+        . $delA
+            ->setHref("?action=del&type=$type&id=$row[id]&page=$pageCurrent")
+            ->html();
 
     switch ($row['status']) {
         case 1:

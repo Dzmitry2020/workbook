@@ -19,7 +19,7 @@ if ($pageCount > 1) {
         ->html();
 }
 
-$comments[] = '';
+$comments[] = 'Действия';
 
 $edtA = Html::A()
     ->addInnerText('<i class="fa fa-edit"></i>')

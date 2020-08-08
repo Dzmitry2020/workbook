@@ -21,15 +21,15 @@ form {
 input {
     margin: 10px 0;
     padding: 10px;
-    border: unset;
-    border-bottom: 2px solid #e3e3e3;
-    outline: none;
+    /*border: unset;*/
+    /*border-bottom: 2px solid #e3e3e3;*/
+    /*outline: none;*/
 }
 
-button, input[type='submit']{
-    padding: 10px;
-    background: #e3e3e3;
-    border: unset;
-    cursor: pointer;
-    border-radius: 4px;
-}
+/*button, input[type='submit']{*/
+/*    padding: 10px;*/
+/*    background: #e3e3e3;*/
+/*    border: unset;*/
+/*    cursor: pointer;*/
+/*    border-radius: 4px;*/
+/*}*/
