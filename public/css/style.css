@@ -39,8 +39,8 @@ body {
 form textarea {
     display: block;
     margin-bottom: 16px;
-    /*width: 300px;*/
-    /*height: 100px;*/
+    width: 250px;
+    height: 100px;
     /*border: unset;*/
     /*border-bottom: 2px solid #e3e3e3;*/
     resize: none; /* Запрещаем изменять размер */

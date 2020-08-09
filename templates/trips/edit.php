@@ -24,18 +24,21 @@ foreach ($fields as $name => $value) {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
+            ->setSelectedValues([$value])
             ->setData($carsList)
             ->html());
     } elseif ($name == 'people_id') {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
+            ->setSelectedValues([$value])
             ->setData($driversList)
             ->html());
     } elseif ($name == 'tasks_id') {
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
+            ->setSelectedValues([$value])
             ->setData($tasksList)
             ->html());
     } else {

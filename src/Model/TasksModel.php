@@ -100,4 +100,15 @@ class TasksModel extends DbEntity
             ->setPageSize($pageSize)
             ->getPage($page);
     }
+
+    public function getTaskRun($pageSize, $page): array
+    {
+        return $this
+            ->setSelect('tasks.id, tasks.status, tasks.date, places.name, tasks.content, tasks.comment')
+            ->setFrom('tasks, places')
+            ->setWhere('places.id = tasks.places_id AND tasks.status = 2')
+            ->setOrderBy('tasks.date')
+            ->setPageSize($pageSize)
+            ->getPage($page);
+    }
 }

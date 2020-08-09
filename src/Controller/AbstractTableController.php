@@ -44,6 +44,24 @@ abstract class AbstractTableController extends AbstractController
             ]);
     }
 
+    public function actionViews(array $data)
+    {
+        $this
+            ->view
+            ->setTemplate('views')
+            ->setData([
+                'table' => $this
+                    ->table
+                    ->setPageSize(Config::PAGE_SIZE)
+                    ->getPage($data['get']['page'] ?? 1),
+                'fields' => array_diff($this->table->getColumnsNames(), ['id']),
+                'comments' => $this->table->getColumnsComments(),
+                'type' => $this->getClassName(),
+//                'pageCount' => $this->table->PageCount(),
+                'currentPage' => ($data['get']['page'] ?? 1)
+            ]);
+    }
+
     public function actionAdd(array $data)
     {
         $this->table->add($data['post']);

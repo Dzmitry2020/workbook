@@ -37,6 +37,20 @@ class TripsController extends AbstractTableController
         ]);
     }
 
+    public function actionViews(array $data)
+    {
+        parent::actionViews($data);
+        $this->view->addData([
+            'table' => $this
+                ->table
+                ->getTripsPlan(
+                    Config::PAGE_SIZE,
+                    $data['get']['page'] ?? 1
+                ),
+            'pageCount' => $this->table->PageCount(),
+        ]);
+    }
+
     public function actionShowEdit(array $data)
     {
         parent::actionShowEdit($data);

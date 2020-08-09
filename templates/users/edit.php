@@ -25,14 +25,14 @@ foreach ($fields as $name => $value) {
             ->setType('password')
             ->setName($name)
             ->setId($name)
-            ->setValue($value)
+            ->setValue('')
             ->html());
     } elseif ($name == 'group_id') {
-
+        $valueSelected[]=$value;
         $form->addInnerText(Html::Select()
             ->setName($name)
             ->setId($name)
-            ->setSelectedValue($value)
+            ->setSelectedValues($valueSelected)
             ->setData($groupsList)
             ->html());
     } else {

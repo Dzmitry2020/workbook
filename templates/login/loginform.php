@@ -20,7 +20,7 @@ $form = Html::Form()
 $form->addInnerText(Html::Input()
     ->setName("login")
     ->setId("login")
-    ->setPlaceholder("Логин")
+    ->setPlaceholder("🧑 Логин")
     ->html());
 
 //$form->addInnerText(Html::Label()
@@ -32,7 +32,7 @@ $form->addInnerText(Html::Input()
     ->setType('password')
     ->setName("pass")
     ->setId("pass")
-    ->setPlaceholder("Пароль")
+    ->setPlaceholder("🔑 Пароль")
     ->html());
 
 $form->addInnerText(

@@ -7,18 +7,15 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item<?= $controllerType == '' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=default&type=default">Главная</a>
-            </li>
-            <li class="nav-item<?= $controllerType == 'tasks' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=tasks">Задачи</a>
+            <li class="nav-item<?= $controllerType == 'classes' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=views&type=trips"><i class='fa fa-map-signs'></i> План поездок</a>
             </li>
             <li class="nav-item<?= $controllerType == 'classes' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=logout&type=login">Выход</a>
+                <a class="nav-link" href="?action=logout&type=login">Выход <i class='fa fa-sign-out-alt'></i></a>
             </li>
         </ul>
     </div>
     <span class="navbar-text">
-    <?= empty($_SESSION['user']) ? '' : $_SESSION['user']['name'] . ', ' . $_SESSION['user']['group'] ?>
+    <?= empty($_SESSION['user']) ? '' : $_SESSION['user']['name'] ?>
   </span>
 </nav>

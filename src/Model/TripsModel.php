@@ -18,7 +18,6 @@ class TripsModel extends DbEntity
      */
     public function getTrips($pageSize, $page): array
     {
-
         $res = $this
             ->runSQL(<<<'TAG'
 SELECT `trips`.`id`, `PutNum`, C.`model`, C.`GosNum`, D.`firstName`, D.`name`, D.`fatherName`, P.`name` as place, 
@@ -99,4 +98,46 @@ WHERE `tasks`.`places_id`=`places`.`id` ORDER BY `places`.`name`'
         }
         return $res;
     }
+
+    public function getTripsPlan($pageSize, $page): array
+    {
+        $res = $this
+            ->runSQL(<<<'TAG'
+SELECT `trips`.`id`, `PutNum`, C.`model`, C.`GosNum`, D.`firstName`, D.`name`, D.`fatherName`, P.`name` as place, 
+T.`content`, T.`date`, `timeStart`, `timeFinish`
+FROM `trips`, 
+(SELECT `cars`.`id`, `model`, `GosNum` FROM `cars`) AS C,
+(SELECT `people`.`id`, `firstName`, `name`, `fatherName` FROM `people`) AS D,
+(SELECT `id`, `date`, `content` FROM `tasks`) AS T,
+(SELECT `tasks`.`id`, `name` FROM `places`, `tasks` WHERE `places`.`id`=`tasks`.`places_id`) AS P
+WHERE
+(C.id = `trips`.`cars_id`)AND(D.`id`=`trips`.`people_id`)AND(T.`id`=`trips`.`tasks_id`)AND(P.`id`=`trips`.`tasks_id`)
+ORDER BY T.`date` AND `timeStart`
+TAG
+            );
+        foreach ($res as $key => $row) {
+            $res[$key]['car'] = $row['model'] . ' гос.№' . $row['GosNum'];
+            unset($res[$key]['model']);
+            unset($res[$key]['GosNum']);
+            $res[$key]['driver'] = $row['firstName'] . ' '
+                . mb_substr($row['name'], 0, 1) . '.'
+                . mb_substr($row['fatherName'], 0, 1) . '.';
+            unset($res[$key]['firstName']);
+            unset($res[$key]['name']);
+            unset($res[$key]['fatherName']);
+            $temp = $row['date'] . ' ' . $row['timeStart'];
+            unset($res[$key]['date']);
+            unset($res[$key]['timeStart']);
+            $res[$key]['timeStart'] = $temp;
+            $temp = $row['timeFinish'];
+            unset($res[$key]['timeFinish']);
+            $res[$key]['timeFinish'] = $temp;
+            $temp = $row['place'] . " - " . $row['content'];
+            unset($res[$key]['place']);
+            unset($res[$key]['content']);
+            $res[$key]['task'] = $temp;
+        }
+        return $res;
+    }
+
 }
