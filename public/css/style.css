@@ -7,19 +7,9 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-/*.table {*/
-/*    border: 2px solid black;*/
+/*.table th {*/
+/*    background-color: lightgray;*/
 /*}*/
-
-/*.table {*/
-/*    border-collapse: collapse;*/
-/*}*/
-
-.table th {
-    background-color: lightgray;
-    /*text-align: center;*/
-    /*vertical-align: center;*/
-}
 
 .pagination a:hover {
     text-decoration: none;
@@ -27,13 +17,8 @@ body {
 }
 
 .form select, input[type='text'], input[type='date'], input[type='password'] {
-    /*background-color: lightgray;*/
     display: block;
     margin-bottom: 16px;
-    /*border: unset;*/
-    /*border-bottom: 2px solid #e3e3e3;*/
-    /*outline: none;*/
-    /*width: 250px;*/
 }
 
 form textarea {
@@ -41,9 +26,7 @@ form textarea {
     margin-bottom: 16px;
     width: 250px;
     height: 100px;
-    /*border: unset;*/
-    /*border-bottom: 2px solid #e3e3e3;*/
-    resize: none; /* Запрещаем изменять размер */
+    resize: none;
 }
 
 form input[type='checkbox']  {
@@ -57,11 +40,8 @@ label{
 }
 
 .form input[type='submit'] {
-    /*width: 100px;*/
-    /*background-color: #00ff55;*/
     margin-top: 20px;
     display: block;
-    /*border: none;*/
 }
 
 .form {
@@ -81,36 +61,4 @@ label{
 
 .pagination a.current {
     color: #ff66ff;
-    /*background-color: #000000;*/
 }
-
-/*.form-log {*/
-/*    display: block;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.form-log a {*/
-/*    color: #7c9ab7;*/
-/*    font-weight: bold;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*.form-log p {*/
-/*    margin: 10px 0;*/
-/*}*/
-
-/*.form-log input {*/
-/*    margin: 10px 0;*/
-/*    padding: 10px;*/
-/*    border: unset;*/
-/*    border-bottom: 2px solid #e3e3e3;*/
-/*    outline: none;*/
-/*}*/
-
-/*.form-log button {*/
-/*    padding: 10px;*/
-/*    background: #e3e3e3;*/
-/*    border: unset;*/
-/*    cursor: pointer;*/
-/*}*/

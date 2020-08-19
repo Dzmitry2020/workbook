@@ -40,11 +40,20 @@ class LoginController extends AbstractController
 
         if (!empty($user)) {
             $_SESSION['user'] = $user;
-
-            $this->redirect('?action=default&type=default');
+            switch ($user['cod']) {
+                case 'admin':
+                    $location = '?action=show&type=tasks';
+                    break;
+                case 'user':
+                    $location = '?action=views&type=trips';
+                    break;
+                default:
+                    $location = '?action=default&type=default';
+            }
         } else {
-            $this->redirect('/');
+            $location = '/';
         }
+        $this->redirect($location);
     }
 
     public function actionLogout()

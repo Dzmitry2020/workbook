@@ -12,21 +12,11 @@ $form = Html::Form()
     ->setAction($action);
 //    ->setClass('form');
 
-//$form->addInnerText(Html::Label()
-//    ->setInnerText("Логин:")
-//    ->setFor("login")
-//    ->html());
-
 $form->addInnerText(Html::Input()
     ->setName("login")
     ->setId("login")
     ->setPlaceholder("Введите логин")
     ->html());
-
-//$form->addInnerText(Html::Label()
-//    ->setInnerText("Пароль:")
-//    ->setFor("pass")
-//    ->html());
 
 $form->addInnerText(Html::Input()
     ->setType('password')

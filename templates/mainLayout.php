@@ -17,6 +17,7 @@
 <body>
 
 <?php
+
 switch ($_SESSION['user']['cod']) {
     case 'admin':
         include 'adminmenu.php';

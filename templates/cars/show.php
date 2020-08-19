@@ -41,7 +41,7 @@ foreach ($table as &$row) {
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
-    ->setClass('table shadow ')
+    ->setClass('table table-striped table-dark')
     ->html();
 
 $form = Html::Form()
