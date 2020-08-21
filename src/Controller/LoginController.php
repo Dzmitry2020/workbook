@@ -48,7 +48,8 @@ class LoginController extends AbstractController
                     $location = '?action=views&type=trips';
                     break;
                 default:
-                    $location = '?action=default&type=default';
+//                    $location = '?action=default&type=default';
+                    $location = '/';
             }
         } else {
             $location = '/';
