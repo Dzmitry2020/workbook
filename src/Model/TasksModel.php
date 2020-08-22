@@ -101,7 +101,7 @@ class TasksModel extends DbEntity
             ->getPage($page);
     }
 
-    public function getTaskRun($pageSize, $page): array
+    public function getTasksRun($pageSize, $page): array
     {
         return $this
             ->setSelect('tasks.id, tasks.status, tasks.date, places.name, tasks.content, tasks.comment')
@@ -110,5 +110,10 @@ class TasksModel extends DbEntity
             ->setOrderBy('tasks.date')
             ->setPageSize($pageSize)
             ->getPage($page);
+    }
+
+    public function getTasksRunCount(): int
+    {
+        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName WHERE `status` = 2;")[0]['C'];
     }
 }

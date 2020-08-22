@@ -3,19 +3,26 @@
 return [
     'admin' => [],
     'user' => [
-        'car',
         'groups',
-        'people',
+        'users',
+        'cars',
+        'places',
+        'people'
+    ],
+    'disp' => [
+        'groups',
+        'users',
+        'car',
         'place',
-//        'tasks',
-        'users'
+        'people',
+        'tasks'
     ],
     'guest' => [
-        'car',
         'groups',
-        'people',
+        'users',
+        'car',
         'place',
-        'tasks',
-        'users'
+        'people',
+        'trips'
     ]
 ];

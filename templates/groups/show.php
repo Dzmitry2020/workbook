@@ -48,6 +48,7 @@ echo Html::Table()
     ->html();
 
 $form = Html::Form()
+    ->setMethod('POST')
     ->setAction("?action=add&type=$type")
     ->setClass('form');
 

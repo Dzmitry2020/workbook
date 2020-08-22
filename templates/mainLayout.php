@@ -25,6 +25,9 @@ switch ($_SESSION['user']['cod']) {
     case 'user':
         include 'usermenu.php';
         break;
+    case 'disp':
+        include 'dispmenu.php';
+        break;
     default:
         include 'guestmenu.php';
 }

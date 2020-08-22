@@ -9,7 +9,7 @@
 
 use TexLab\Html\Html;
 
-echo "<h2>Ведомость выездов</h2>";
+echo "<h2>Журнал выездов</h2>";
 
 $pageCurrent = $this->data['currentPage'];
 

@@ -1,9 +1,9 @@
 {
   "prefer-stable": true,
   "require": {
-    "texlab/mydb": "^0.0.4",
+    "texlab/mydb": "^v0.0.6",
     "ext-mysqli": "*",
-    "texlab/html": "^0.09"
+    "texlab/html": "^0.10"
   },
   "autoload": {
     "psr-4": {

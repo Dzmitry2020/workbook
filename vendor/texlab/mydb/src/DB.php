@@ -8,14 +8,20 @@ use mysqli;
 /**
  * Class DB
  *
- * The class implements a singleton pattern to
- * create a new connection to the MySql server.
+ * Create a new connection to the MySql server.
  *
  * @package TexLab\MyDB
  */
 class DB implements DBInterface
 {
+    /**
+     * @var mysqli[]
+     */
     private static $instances = [];
+
+    /**
+     * @var array<string, mixed>
+     */
     private const DEFAULT_OPTIONS = [
         'host' => null,
         'username' => null,
@@ -25,7 +31,12 @@ class DB implements DBInterface
         'socket' => null
     ];
 
-    private static function new(array $options): mysqli
+    /**
+     * @param array<string, mixed> $options
+     * @param callable $errorHandler
+     * @return mysqli
+     */
+    private static function new(array $options, callable $errorHandler): mysqli
     {
         $mysqli = @new mysqli(
             $options['host'],
@@ -36,27 +47,33 @@ class DB implements DBInterface
             $options['socket']
         );
 
-        if ($mysqli->connect_error) {
-            static::errorHandler(['connect_error' => $mysqli->connect_error]);
+        if ($mysqli->connect_errno) {
+            $errorHandler($mysqli);
         }
 
         return $mysqli;
-
     }
 
-    public static function errorHandler(array $error)
+    /**
+     * @param array<string, mixed> $options
+     * @param callable|null $errorHandler
+     * @return mysqli
+     */
+    public static function link(array $options, callable $errorHandler = null): mysqli
     {
-        throw new Exception("MySql connect error:" . $error['connect_error']);
-    }
+        $userErrorHandler = is_callable($errorHandler) ? $errorHandler : function (mysqli $mysqli): void {
+            throw new Exception("MySql connect error : $mysqli->connect_error", $mysqli->connect_errno);
+        };
 
-    public static function Link(array $options): mysqli
-    {
-        return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(
-                array_merge(
-                    static::DEFAULT_OPTIONS,
-                    $options
-                )
+        $key = serialize($options);
+
+        if (empty(static::$instances[$key])) {
+            static::$instances[$key] = static::new(
+                array_merge(static::DEFAULT_OPTIONS, $options),
+                $userErrorHandler
             );
-    }
+        }
 
+        return static::$instances[$key];
+    }
 }

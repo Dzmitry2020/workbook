@@ -8,8 +8,14 @@ class Input extends AbstractTag
     use NameTrait;
     use PlaceholderTrait;
 
-    protected string $type = "text";
-    protected string $checked = '';
+    /**
+     * @var string
+     */
+    protected $type = "text";
+    /**
+     * @var string
+     */
+    protected $checked = '';
 
     /**
      * @param string $type

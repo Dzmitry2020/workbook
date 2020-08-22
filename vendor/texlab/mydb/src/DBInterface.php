@@ -2,11 +2,16 @@
 
 namespace TexLab\MyDB;
 
+use Exception;
 use mysqli;
 
 interface DBInterface
 {
-    public static function errorHandler(array $error);
-
-    public static function Link(array $options): mysqli;
+    /**
+     * @param array<string, mixed> $options
+     * @param callable|null $errorHandler
+     * @return mysqli
+     * @throws Exception
+     */
+    public static function link(array $options, callable $errorHandler = null): mysqli;
 }

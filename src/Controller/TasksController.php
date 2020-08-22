@@ -43,11 +43,11 @@ class TasksController extends AbstractTableController
         $this->view->addData([
             'table' => $this
                 ->table
-                ->getTaskRun(
+                ->getTasksRun(
                     Config::PAGE_SIZE,
                     $data['get']['page'] ?? 1
                 ),
-            'pageCount' => $this->table->PageCount(),
+            'pageCount' => $this->table->getTasksRunCount()
         ]);
     }
 
