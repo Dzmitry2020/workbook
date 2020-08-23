@@ -13,33 +13,35 @@ use TexLab\Html\Html;
 //echo "<button class=\"btn btn-success mb-1\" data-toggle=\"modal\" data-target=\"#Modal\">
 //<i class=\"fa fa-plus\"></i></button>";
 
-if ($pageCount > 1) {
-    echo Html::Pagination()
-        ->setClass('pagination')
-        ->setUrlPrefix("?action=show&type=" . $type)
-        ->setPageCount($pageCount)
-        ->setCurrentPage($this->data['currentPage'])
-        ->html();
-}
+//if ($pageCount > 1) {
+//    echo Html::Pagination()
+//        ->setClass('pagination')
+//        ->setUrlPrefix("?action=show&type=" . $type)
+//        ->setPageCount($pageCount)
+//        ->setCurrentPage($this->data['currentPage'])
+//        ->html();
+//}
 
-$comments[] = 'Действия';
+//$comments[] = 'Действия';
+//
+//$edtA = Html::A()
+//    ->addInnerText('<i class="fa fa-edit"></i>')
+//    ->setClass('btn btn-success btn-sm edit');
+//$delA = Html::A()
+//    ->addInnerText('<i class="fa fa-trash"></i>')
+//    ->setClass('btn btn-danger btn-sm del');
+//
+//foreach ($table as &$row) {
+//    $row[] = $edtA
+//            ->setHref("?action=showedit&type=$type&id=$row[id]")
+//            ->html()
+//        . "\n"
+//        . $delA
+//            ->setHref("?action=del&type=$type&id=$row[id]")
+//            ->html();
+//}
 
-$edtA = Html::A()
-    ->addInnerText('<i class="fa fa-edit"></i>')
-    ->setClass('btn btn-success btn-sm edit');
-$delA = Html::A()
-    ->addInnerText('<i class="fa fa-trash"></i>')
-    ->setClass('btn btn-danger btn-sm del');
-
-foreach ($table as &$row) {
-    $row[] = $edtA
-            ->setHref("?action=showedit&type=$type&id=$row[id]")
-            ->html()
-        . "\n"
-        . $delA
-            ->setHref("?action=del&type=$type&id=$row[id]")
-            ->html();
-}
+echo "<div class='table-responsive'>\n";
 
 echo Html::Table()
     ->setHeaders($comments)
@@ -47,33 +49,35 @@ echo Html::Table()
     ->setClass('table table-striped')
     ->html();
 
-$form = Html::Form()
-    ->setMethod('POST')
-    ->setAction("?action=add&type=$type")
-    ->setClass('form');
+echo "\n</div>";
 
-foreach ($fields as $field) {
-
-    $form->addInnerText(Html::Label()
-        ->setFor($field)
-        ->setInnerText($comments[$field])
-        ->html());
-
-    $form->addInnerText(Html::Input()
-        ->setName($field)
-        ->setId($field)
-        ->html());
-}
-
-$form->addInnerText(
-    Html::Input()
-        ->setType('submit')
-        ->setClass('btn btn-success')
-        ->setValue('Добавить')
-        ->html()
-);
-
-echo $form->html();
+//$form = Html::Form()
+//    ->setMethod('POST')
+//    ->setAction("?action=add&type=$type")
+//    ->setClass('form');
+//
+//foreach ($fields as $field) {
+//
+//    $form->addInnerText(Html::Label()
+//        ->setFor($field)
+//        ->setInnerText($comments[$field])
+//        ->html());
+//
+//    $form->addInnerText(Html::Input()
+//        ->setName($field)
+//        ->setId($field)
+//        ->html());
+//}
+//
+//$form->addInnerText(
+//    Html::Input()
+//        ->setType('submit')
+//        ->setClass('btn btn-success')
+//        ->setValue('Добавить')
+//        ->html()
+//);
+//
+//echo $form->html();
 
 
 //echo <<<HTML

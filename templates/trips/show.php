@@ -42,11 +42,15 @@ foreach ($table as &$row) {
             ->html();
 }
 
+echo "<div class='table-responsive'>\n";
+
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
-    ->setClass('table table-striped')
+    ->setClass('table table-striped table-fixed')
     ->html();
+
+echo "\n</div>";
 
 $form = Html::Form()
     ->setMethod('POST')

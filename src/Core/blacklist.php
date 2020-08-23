@@ -12,8 +12,8 @@ return [
     'user' => [
         'groups',
         'users',
-        'car',
-        'place',
+        'cars',
+        'places',
         'people'
     ]
 ];

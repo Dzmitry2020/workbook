@@ -38,11 +38,15 @@ foreach ($table as &$row) {
             ->html();
 }
 
+echo "<div class='table-responsive'>\n";
+
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
     ->setClass('table table-striped')//table-dark
     ->html();
+
+echo "\n</div>";
 
 $form = Html::Form()
     ->setMethod('POST')
@@ -73,7 +77,7 @@ foreach ($fields as $field) {
             ->html());
     }
 }
-echo "<br>";
+
 $form->addInnerText(
     Html::Input()
         ->setType('submit')

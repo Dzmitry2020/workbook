@@ -23,8 +23,8 @@ class Dispatcher
 
         $this->view = new View();
         $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'] ?? 'login'))) . "Controller";
-//        $this->actionName = "action" . ($_GET['action'] ?? 'Default');
         $this->actionName = "action" . ($_GET['action'] ?? 'loginform');
+        //$this->actionName = "action" . ($_GET['action'] ?? 'Default');
     }
 
     public function run()
@@ -53,13 +53,14 @@ class Dispatcher
                         ->addData(['controllerType' => $_GET['type']])
                         ->view();
                 } else {
-                    header("HTTP/1.0 404 Not Found");
+                    header("Location: 404.html");
                 }
             } else {
-                header("HTTP/1.0 404 Not Found");
+                header("Location: 404.html");
             }
         } else {
-            header("HTTP/1.0 403 Forbidden");
+//            header("HTTP/1.0 403 Forbidden");
+            header("Location: 403.html");
         }
     }
 }

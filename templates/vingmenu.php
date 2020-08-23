@@ -12,7 +12,7 @@
                     <i class='fa fa-dice-d20'></i> Работы
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="?action=show&type=tasks"><i class='fa fa-tasks'></i> Задачи</a>
+                    <a class="dropdown-item" href="?action=show&type=tasks"><i class='fa fa-tasks'></i> Задания</a>
                     <a class="dropdown-item" href="?action=show&type=trips"><i class='fa fa-road'></i> Поездки</a>
                 </div>
             </li>

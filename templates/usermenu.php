@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item<?= $controllerType == 'tasks' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=views&type=tasks"><i class='fa fa-tasks'></i> Задачи</a>
+                <a class="nav-link" href="?action=views&type=tasks"><i class='fa fa-tasks'></i> Задания</a>
             </li>
             <li class="nav-item<?= $controllerType == 'trips' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=views&type=trips"><i class='fa fa-road'></i> Поездки</a>

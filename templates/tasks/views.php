@@ -37,8 +37,12 @@ foreach ($table as &$row) {
     }
 }
 
+echo "<div class='table-responsive'>\n";
+
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
     ->setClass('table')
     ->html();
+
+echo "\n</div>";
