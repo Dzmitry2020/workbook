@@ -21,7 +21,7 @@ class Dispatcher
             'dbname' => Config::MYSQL_DATABASE
         ]);
 
-        $this->view = new View();
+
         $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'] ?? 'login'))) . "Controller";
         $this->actionName = "action" . ($_GET['action'] ?? 'loginform');
         //$this->actionName = "action" . ($_GET['action'] ?? 'Default');
@@ -32,14 +32,9 @@ class Dispatcher
         $blacklist = include "blacklist.php";
         $cod = $_SESSION['user']['cod'] ?? 'user';
 
-        if ($this->actionName == 'loginform') {
-            $this->view->setLayout('plainLayout');
-        } else {
-            $this->view->setLayout('mainLayout');
-        }
-
         if (!(in_array($_GET['type'], $blacklist[$cod]))) {
             if (class_exists($this->controllerName)) {
+                $this->view = new View();
                 $controller = new $this->controllerName(
                     $this->view,
                     $this->link
@@ -47,6 +42,11 @@ class Dispatcher
                 $controllerData = ['post' => $_POST, 'get' => $_GET];
 
                 if (method_exists($controller, $this->actionName)) {
+                    if ($this->actionName == 'loginform') {
+                        $this->view->setLayout('plainLayout');
+                    } else {
+                        $this->view->setLayout('mainLayout');
+                    }
                     $controller->{$this->actionName}($controllerData);
                     $this
                         ->view
