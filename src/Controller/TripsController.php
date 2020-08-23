@@ -47,7 +47,7 @@ class TripsController extends AbstractTableController
                     Config::PAGE_SIZE,
                     $data['get']['page'] ?? 1
                 ),
-            'pageCount' => $this->table->PageCount(),
+            'pageCount' => ceil($this->table->getTripsCount() / Config::PAGE_SIZE)
         ]);
     }
 

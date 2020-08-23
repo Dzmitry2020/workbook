@@ -1,9 +1,7 @@
 <?php
 
-/** @var int $pageCount Количество страниц
- * @var array $fields Список полей таблицы
+/**
  * @var array $comments Комментарии к полям таблицы
- * @var string $type Имя контроллера
  * @var array $table
  */
 
@@ -16,5 +14,5 @@ $pageCurrent = $this->data['currentPage'];
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
-    ->setClass('table shadow ')
+    ->setClass('table')
     ->html();

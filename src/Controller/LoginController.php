@@ -41,14 +41,14 @@ class LoginController extends AbstractController
         if (!empty($user)) {
             $_SESSION['user'] = $user;
             switch ($user['cod']) {
-                case 'admin': case 'user':
+                case 'admin':
+                    $location = '?action=show&type=users';
+                    break;
+                    case 'ving':
                     $location = '?action=show&type=tasks';
                     break;
-                case 'disp':
+                case 'user':
                     $location = '?action=views&type=trips';
-                    break;
-                case 'guest':
-                    $location = '?action=views&type=tasks';
                     break;
                 default:
 //                    $location = '?action=default&type=default';

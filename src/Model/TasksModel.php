@@ -101,19 +101,19 @@ class TasksModel extends DbEntity
             ->getPage($page);
     }
 
-    public function getTasksRun($pageSize, $page): array
+    public function getTasksUnfinished($pageSize, $page): array
     {
         return $this
             ->setSelect('tasks.id, tasks.status, tasks.date, places.name, tasks.content, tasks.comment')
             ->setFrom('tasks, places')
-            ->setWhere('places.id = tasks.places_id AND tasks.status = 2')
-            ->setOrderBy('tasks.date')
+            ->setWhere('places.id = tasks.places_id AND tasks.status < 4')
+            ->setOrderBy('tasks.date DESC')
             ->setPageSize($pageSize)
             ->getPage($page);
     }
 
-    public function getTasksRunCount(): int
+    public function getTasksUnfinishedCount(): int
     {
-        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName WHERE `status` = 2;")[0]['C'];
+        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName WHERE `status` < 4;")[0]['C'];
     }
 }

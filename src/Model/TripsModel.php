@@ -112,7 +112,7 @@ FROM `trips`,
 (SELECT `tasks`.`id`, `name` FROM `places`, `tasks` WHERE `places`.`id`=`tasks`.`places_id`) AS P
 WHERE
 (C.id = `trips`.`cars_id`)AND(D.`id`=`trips`.`people_id`)AND(T.`id`=`trips`.`tasks_id`)AND(P.`id`=`trips`.`tasks_id`)
-ORDER BY T.`date` AND `timeStart`
+ORDER BY T.`date` DESC, `timeStart`
 TAG
             );
         foreach ($res as $key => $row) {
@@ -138,5 +138,10 @@ TAG
             $res[$key]['task'] = $temp;
         }
         return $res;
+    }
+
+    public function getTripsCount(): int
+    {
+        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
     }
 }

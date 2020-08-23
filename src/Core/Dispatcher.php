@@ -30,7 +30,7 @@ class Dispatcher
     public function run()
     {
         $blacklist = include "blacklist.php";
-        $cod = $_SESSION['user']['cod'] ?? 'guest';
+        $cod = $_SESSION['user']['cod'] ?? 'user';
 
         if ($this->actionName == 'loginform') {
             $this->view->setLayout('plainLayout');

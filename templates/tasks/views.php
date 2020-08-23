@@ -1,15 +1,13 @@
 <?php
 
 /** @var int $pageCount Количество страниц
- * @var array $fields Список полей таблицы
  * @var array $comments Комментарии к полям таблицы
- * @var string $type Имя контроллера
  * @var array $table
  */
 
 use TexLab\Html\Html;
 
-echo "<h2>Текущие задачи</h2>";
+echo "<h2>Журнал работ</h2>";
 
 $pageCurrent = $this->data['currentPage'];
 
@@ -42,5 +40,5 @@ foreach ($table as &$row) {
 echo Html::Table()
     ->setHeaders($comments)
     ->setData($table)
-    ->setClass('table shadow ')
+    ->setClass('table')
     ->html();

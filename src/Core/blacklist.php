@@ -2,27 +2,18 @@
 
 return [
     'admin' => [],
-    'user' => [
+    'ving' => [
         'groups',
         'users',
         'cars',
         'places',
         'people'
     ],
-    'disp' => [
+    'user' => [
         'groups',
         'users',
         'car',
         'place',
-        'people',
-        'tasks'
-    ],
-    'guest' => [
-        'groups',
-        'users',
-        'car',
-        'place',
-        'people',
-        'trips'
+        'people'
     ]
 ];

@@ -7,9 +7,9 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-/*.table th {*/
-/*    background-color: lightgray;*/
-/*}*/
+.table {
+    border: 1px solid gray;
+}
 
 .pagination a:hover {
     text-decoration: none;

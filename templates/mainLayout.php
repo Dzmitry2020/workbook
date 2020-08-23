@@ -22,14 +22,11 @@ switch ($_SESSION['user']['cod']) {
     case 'admin':
         include 'adminmenu.php';
         break;
-    case 'user':
-        include 'usermenu.php';
-        break;
-    case 'disp':
-        include 'dispmenu.php';
+    case 'ving':
+        include 'vingmenu.php';
         break;
     default:
-        include 'guestmenu.php';
+        include 'usermenu.php';
 }
 ?>
 
