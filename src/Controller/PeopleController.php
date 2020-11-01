@@ -10,7 +10,7 @@ class PeopleController extends AbstractTableController
 
     private function prepareData(array &$data)
     {
-        $data['post']['Driver'] = isset($data['post']['Driver']) ? 1 : 0;
+        $data['post']['driver'] = isset($data['post']['driver']) ? 1 : 0;
     }
 
     public function actionAdd(array $data)

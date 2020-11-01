@@ -7,10 +7,10 @@ use View\View;
 
 class Dispatcher
 {
-    protected $view;
-    protected $controllerName;
-    protected $actionName;
-    protected $link;
+    protected View $view;
+    protected string $controllerName;
+    protected string $actionName;
+    protected \mysqli $link;
 
     public function __construct()
     {

@@ -21,8 +21,8 @@ foreach ($fields as $name => $field) {
     $form->addInnerText(Html::Input()
         ->setName($name)
         ->setId($name)
-        ->setType($name == 'Driver' ? 'checkbox' : 'text')
-        ->setChecked($name == 'Driver' ? $field : false)
+        ->setType($name == 'driver' ? 'checkbox' : 'text')
+        ->setChecked($name == 'driver' ? $field : false)
         ->setValue($field)
         ->html());
 }
